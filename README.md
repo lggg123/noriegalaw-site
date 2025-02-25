@@ -20,6 +20,43 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Project Structure
+
+legal-website/
+├── src/
+│   ├── app/
+│   │   ├── (routes)/
+│   │   │   ├── about/
+│   │   │   ├── practice-areas/
+│   │   │   ├── contact/
+│   │   │   └── blog/
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── container.tsx
+│   │   │   └── ... (other UI components)
+│   │   ├── layout/
+│   │   │   ├── header.tsx
+│   │   │   ├── footer.tsx
+│   │   │   └── navigation.tsx
+│   │   └── sections/
+│   │       ├── hero.tsx
+│   │       ├── practice-areas.tsx
+│   │       └── contact-form.tsx
+│   ├── lib/
+│   │   └── utils.ts
+│   ├── styles/
+│   │   └── globals.css
+│   └── types/
+│       └── index.ts
+├── public/
+│   └── images/
+├── tailwind.config.ts
+└── tsconfig.json
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -1,101 +1,132 @@
-import Image from "next/image";
+'use client'
+
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { useInView } from 'react-intersection-observer'
+import CallToAction from '@/components/CallToAction'
+import FAQAccordion from '@/components/FAQAccordion'
+import PracticeAreaStats from '@/components/PracticeAreaStats'
+import ChatWidget from '@/components/ChatWidget'
+import TestimonialCarousel from '@/components/TestimonialCarousel'
+import { getLawFirmSchema } from '@/lib/schema'
+
+const faqs = [
+  {
+    question: 'What is the process for a violent crimes defense?',
+    answer: 'The process involves gathering evidence, consulting with legal experts, and preparing a strong defense strategy.'
+  },
+  {
+    question: 'How long does a violent crimes case take to resolve?',
+    answer: 'The duration can vary widely depending on the complexity of the case and the court schedule.'
+  }
+];
+
+const testimonials = [
+  {
+    id: 1,
+    name: "John D.",
+    text: "Exceptional defense strategy that helped resolve my case.",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "Sarah M.",
+    text: "Professional and understanding throughout the entire process.",
+    rating: 5
+  },
+  // Add more testimonials as needed
+]
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  })
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getLawFirmSchema()),
+        }}
+      />
+      <main className="container mx-auto p-4">
+        {/* Hero Section */}
+        <section className="bg-slate-900 text-white rounded-lg shadow-xl">
+          <div className="px-4 py-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl mx-auto"
+            >
+              <h1 className="text-5xl font-bold mb-6 leading-tight">
+                Expert Legal Defense When You Need It Most
+              </h1>
+              <p className="text-xl mb-8 text-slate-300">
+                We provide top-notch legal services for various practice areas, 
+                including violent crimes defense.
+              </p>
+              <CallToAction variant="primary" />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <motion.section 
+          ref={ref}
+          className="container mx-auto px-4 py-20"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center text-slate-900">
+              What Our Clients Say
+            </h2>
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <TestimonialCarousel testimonials={testimonials} />
+            </div>
+          </div>
+        </motion.section>
+
+       {/* FAQ Section */}
+        <motion.section
+          className="container mx-auto px-4 py-20 bg-slate-50"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center text-slate-900">
+              Frequently Asked Questions
+            </h2>
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <FAQAccordion faqs={faqs} />
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Statistics Section */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center text-slate-900">
+              Our Track Record
+            </h2>
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <PracticeAreaStats />
+            </div>
+          </div>
+        </section>
+
+        {/* Chat Widget */}
+        <div className="fixed bottom-8 right-8 z-50">
+          <ChatWidget />
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
