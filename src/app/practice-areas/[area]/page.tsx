@@ -20,7 +20,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function PracticeAreaPage({ params, searchParams: _searchParams }: Props) {
+export default function PracticeAreaPage({ params }: Props) {
   const areaKey = params.area.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
