@@ -12,8 +12,12 @@ export const metadata: Metadata = {
   description: 'Expert legal defense for violent crime charges. Our experienced attorneys provide aggressive representation and protect your rights.',
 };
 
-export default async function ViolentCrimesPage() {
+export default function ViolentCrimesPage() {
   const areaDetails = practiceAreaDetails['Violent Crimes'];
+
+  if (!areaDetails) {
+    return <div>Practice area details not found</div>;
+  }
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
@@ -24,8 +28,11 @@ export default async function ViolentCrimesPage() {
         <CallToAction variant="primary" />
       </div>
 
-      <Suspense fallback={<LoadingSpinner />}>
-        <PracticeAreaStats />
+      <div>
+        <Suspense fallback={<LoadingSpinner />}>
+          <PracticeAreaStats />
+        </Suspense>
+
         {/* Main Content and FAQ Section */}
         <div className="grid md:grid-cols-2 gap-12 my-12">
           <section className="prose lg:prose-xl">
@@ -39,6 +46,7 @@ export default async function ViolentCrimesPage() {
             <FAQAccordion faqs={areaDetails.faqs} />
           </section>
         </div>
+
         {/* Contact Form Section */}
         <section className="bg-slate-100 rounded-lg p-8 my-12">
           <h2 className="text-3xl font-bold mb-6 text-center">
@@ -46,7 +54,7 @@ export default async function ViolentCrimesPage() {
           </h2>
           <ContactForm practiceArea="Violent Crimes" />
         </section>
-      </Suspense>
+      </div>
     </main>
   );
 }
