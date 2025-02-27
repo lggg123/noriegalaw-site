@@ -9,6 +9,7 @@ import PracticeAreaStats from '@/components/PracticeAreaStats'
 import ChatWidget from '@/components/ChatWidget'
 import TestimonialCarousel from '@/components/TestimonialCarousel'
 import { getLawFirmSchema } from '@/lib/schema'
+import { X, Menu } from 'lucide-react'
 
 const faqs = [
   {
@@ -34,7 +35,6 @@ const testimonials = [
     text: "Professional and understanding throughout the entire process.",
     rating: 5
   },
-  // Add more testimonials as needed
 ]
 
 export default function Home() {
@@ -52,6 +52,42 @@ export default function Home() {
           __html: JSON.stringify(getLawFirmSchema()),
         }}
       />
+      
+      {/* Add Navigation */}
+      <nav className="relative z-20">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="text-white text-2xl font-bold">Your Law Firm</div>
+          
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-white"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-6 text-white">
+            <a href="#" className="hover:text-slate-300">Home</a>
+            <a href="#" className="hover:text-slate-300">Services</a>
+            <a href="#" className="hover:text-slate-300">About</a>
+            <a href="#" className="hover:text-slate-300">Contact</a>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="absolute top-full left-0 right-0 bg-slate-900/95 backdrop-blur-sm md:hidden">
+              <div className="flex flex-col space-y-4 p-4 text-white">
+                <a href="#" className="hover:text-slate-300">Home</a>
+                <a href="#" className="hover:text-slate-300">Services</a>
+                <a href="#" className="hover:text-slate-300">About</a>
+                <a href="#" className="hover:text-slate-300">Contact</a>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
       <main className="container mx-auto p-4 relative z-10">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-slate-900/90 via-slate-800/90 to-slate-900/90 text-white rounded-xl shadow-2xl backdrop-blur-sm border border-slate-700/50">
