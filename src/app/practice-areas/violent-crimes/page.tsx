@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
 import FAQAccordion from '@/components/FAQAccordion';
 import CallToAction from '@/components/CallToAction';
 import PracticeAreaStats from '@/components/PracticeAreaStats';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { practiceAreaDetails } from '@/lib/criminal-defense';
 
 export const metadata: Metadata = {
