@@ -1,6 +1,5 @@
 // src/app/practice-areas/[area]/page.tsx
 import React, { Suspense } from 'react';
-import { NextSeo } from 'next-seo';
 import {
   practiceAreaDetails,
   getJurisdictionSchema,
@@ -12,10 +11,31 @@ import FAQAccordion from '@/components/FAQAccordion';
 import CallToAction from '@/components/CallToAction';
 import PracticeAreaStats from '@/components/PracticeAreaStats';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ area: string }>
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+// Add metadata generation
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const areaKey = resolvedParams.area.split('-').map(word =>
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+  
+  const areaDetails = practiceAreaDetails[areaKey as keyof typeof practiceAreaDetails];
+
+  return {
+    title: `${areaKey} Defense Attorney | Criminal Defense Expert`,
+    description: areaDetails.description.slice(0, 160),
+    openGraph: {
+      title: `${areaKey} Criminal Defense`,
+      description: areaDetails.description.slice(0, 160),
+      url: `https://yourdomain.com/practice-areas/${resolvedParams.area}`,
+    },
+  };
 }
 
 export default async function PracticeAreaPage({ params }: Props) {
@@ -29,15 +49,6 @@ export default async function PracticeAreaPage({ params }: Props) {
 
   return (
     <>
-      <NextSeo
-        title={`${areaKey} Defense Attorney | Criminal Defense Expert`}
-        description={areaDetails.description.slice(0, 160)}
-        openGraph={{
-          title: `${areaKey} Criminal Defense`,
-          description: areaDetails.description.slice(0, 160),
-          url: `https://yourdomain.com/practice-areas/${resolvedParams.area}`,
-        }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
