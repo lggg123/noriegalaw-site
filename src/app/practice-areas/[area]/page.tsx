@@ -14,14 +14,13 @@ import PracticeAreaStats from '@/components/PracticeAreaStats';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 type Props = {
-  params: {
-    area: string
-  },
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ area: string }>
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export default function PracticeAreaPage({ params }: Props) {
-  const areaKey = params.area.split('-').map(word =>
+export default async function PracticeAreaPage({ params }: Props) {
+  const resolvedParams = await params;
+  const areaKey = resolvedParams.area.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
 
@@ -36,7 +35,7 @@ export default function PracticeAreaPage({ params }: Props) {
         openGraph={{
           title: `${areaKey} Criminal Defense`,
           description: areaDetails.description.slice(0, 160),
-          url: `https://yourdomain.com/practice-areas/${params.area}`,
+          url: `https://yourdomain.com/practice-areas/${resolvedParams.area}`,
         }}
       />
       <script
