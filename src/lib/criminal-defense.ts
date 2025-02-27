@@ -1,5 +1,5 @@
 // src/lib/schema/criminal-defense.ts
-import { WithContext, FAQPage, LegalService } from 'schema-dts';
+import { WithContext, FAQPage } from 'schema-dts';
 
 // Enhanced Practice Area Descriptions
 export const practiceAreaDetails = {

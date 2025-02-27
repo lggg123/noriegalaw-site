@@ -1,5 +1,5 @@
 // src/lib/schema.ts
-import { Organization, WithContext, Article, Place } from 'schema-dts';
+import { Organization, WithContext, Article } from 'schema-dts';
 
 export const getLawFirmSchema = (): WithContext<Organization> => ({
   '@context': 'https://schema.org',
