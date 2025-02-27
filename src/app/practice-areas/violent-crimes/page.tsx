@@ -28,33 +28,29 @@ export default function ViolentCrimesPage() {
         <CallToAction variant="primary" />
       </div>
 
-      <div>
-        <Suspense fallback={<LoadingSpinner />}>
-          <PracticeAreaStats />
-        </Suspense>
+      <PracticeAreaStats />
 
-        {/* Main Content and FAQ Section */}
-        <div className="grid md:grid-cols-2 gap-12 my-12">
-          <section className="prose lg:prose-xl">
-            <h2>Why Choose Us for Your Violent Crimes Defense?</h2>
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              {areaDetails.description}
-            </div>
-          </section>
-          <section>
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-            <FAQAccordion faqs={areaDetails.faqs} />
-          </section>
-        </div>
-
-        {/* Contact Form Section */}
-        <section className="bg-slate-100 rounded-lg p-8 my-12">
-          <h2 className="text-3xl font-bold mb-6 text-center">
-            Discuss Your Violent Crimes Case With Us
-          </h2>
-          <ContactForm practiceArea="Violent Crimes" />
+      {/* Main Content and FAQ Section */}
+      <div className="grid md:grid-cols-2 gap-12 my-12">
+        <section className="prose lg:prose-xl">
+          <h2>Why Choose Us for Your Violent Crimes Defense?</h2>
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            {areaDetails.description}
+          </div>
+        </section>
+        <section>
+          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <FAQAccordion faqs={areaDetails.faqs} />
         </section>
       </div>
+
+      {/* Contact Form Section */}
+      <section className="bg-slate-100 rounded-lg p-8 my-12">
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          Discuss Your Violent Crimes Case With Us
+        </h2>
+        <ContactForm practiceArea="Violent Crimes" />
+      </section>
     </main>
   );
 }
