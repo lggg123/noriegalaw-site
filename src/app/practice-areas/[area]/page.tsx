@@ -13,13 +13,14 @@ import CallToAction from '@/components/CallToAction';
 import PracticeAreaStats from '@/components/PracticeAreaStats';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
-interface Props {
+type Props = {
   params: {
-    area: string;
-  };
+    area: string
+  }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function PracticeAreaPage({ params }: Props) {
+export default function PracticeAreaPage({ params, searchParams }: Props) {
   const areaKey = params.area.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
