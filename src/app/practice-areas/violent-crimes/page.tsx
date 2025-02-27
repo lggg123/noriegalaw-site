@@ -7,11 +7,6 @@ import PracticeAreaStats from '@/components/PracticeAreaStats';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { practiceAreaDetails } from '@/lib/criminal-defense';
 
-type Props = {
-  params: Promise<{ area: string }>
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
-}
-
 export const metadata: Metadata = {
   title: 'Violent Crimes Defense Attorney | Criminal Defense Expert',
   description: 'Expert legal defense for violent crime charges. Our experienced attorneys provide aggressive representation and protect your rights.',
