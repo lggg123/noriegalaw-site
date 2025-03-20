@@ -5,7 +5,7 @@ const AboutSection = () => {
     <section id="about" style={{ padding: '2rem', backgroundColor: '#f9f9f9' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
         <h2>About Us</h2>
-        <p>
+        <p className="text-black mb-4">
           Welcome to Noriega Law! We are dedicated to providing exceptional legal services to our clients.
           Attorney Chris Noriega’s journey into the law began shortly after he graduated from high school in 1980 and enlisted in the United States Marine Corps. While a Marine at Camp Pendleton, Chris attended Mira Costa Community College in Oceanside, California and took a variety of courses. One course that sparked his interest was an Administration of Justice class; a law-related subject.  Chris was later deployed to Okinawa, Japan where he continued to take more law-related courses that were offered by Los Angeles Metropolitan College’s satellite campus located at the Kadena Air Force Base in Okinawa. 
 Chris ultimately was Honorably Discharged from the Marine Corps as a Non-Commissioned Officer (E-4) in 1986.  Shortly after his discharge, Chris acquired ownership of Noriega Bail Bonds, a business his father established in 1968. At this time, Chris was a single-parent with sole custody of his two young daughters. Nevertheless, he continued pursuing his education and eventually graduated from UCLA with a Bachelor’s Degree in Political Science in 1990.  
