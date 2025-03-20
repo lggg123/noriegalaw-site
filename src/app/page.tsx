@@ -65,7 +65,7 @@ export default function AboutSection() {
           </div>
           
           {/* Attorney Timeline */}
-          <h3 className="text-2xl font-bold mb-6 text-center text-white">Attorney Chris Noriega's Journey</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center text-white">Attorney Chris Noriega&apos;s Journey</h3>
           <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-8 mb-12 border border-slate-700/50">
             <div className="relative">
               {/* Timeline Line */}
@@ -110,7 +110,7 @@ export default function AboutSection() {
               className="mb-6"
             >
               <p className="text-slate-300">
-                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff's Department's Youth Activities League.
+                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff&apos;s Department&apos;s Youth Activities League.
               </p>
             </motion.div>
             <motion.div 
@@ -120,7 +120,7 @@ export default function AboutSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p className="text-slate-300">
-                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients' cases.
+                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients&apos; cases.
               </p>
             </motion.div>
           </div>
