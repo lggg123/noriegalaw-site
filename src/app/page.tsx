@@ -14,7 +14,7 @@ function NavigationBar() {
           <a className="text-white font-bold text-xl">Noriega Law</a>
         </Link>
         <div>
-          <Link href="#about" passHref>
+          <Link href="/about" passHref>
             <a className="text-white mx-2">About</a>
           </Link>
           <Link href="#services" passHref>
