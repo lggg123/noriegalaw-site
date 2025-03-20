@@ -69,9 +69,6 @@ function AboutSection() {
         className="container mx-auto px-4 relative z-10"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-center text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
-            About Us
-          </h2>
           
           {/* Introduction Card */}
           <div className="bg-gradient-to-r from-slate-900/90 via-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 mb-12 border border-slate-700/50">
