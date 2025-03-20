@@ -1,14 +1,29 @@
-'use client'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+// NavigationBar function declaration
+function NavigationBar() {
+  return (
+    <nav className="bg-slate-800 p-4 fixed w-full top-0 z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <a href="/" className="text-white font-bold text-xl">Noriega Law</a>
+        <div>
+          <a href="#about" className="text-white mx-2">About</a>
+          <a href="#services" className="text-white mx-2">Services</a>
+          <a href="#contact" className="text-white mx-2">Contact</a>
+        </div>
+      </div>
+    </nav>
+  );
+}
 
-export default function AboutSection() {
+// AboutSection function declaration
+function AboutSection() {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
-  })
+  });
 
   const attorneyInfo = [
     {
@@ -50,7 +65,7 @@ export default function AboutSection() {
           {/* Introduction Card */}
           <div className="bg-gradient-to-r from-slate-900/90 via-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 mb-12 border border-slate-700/50">
             <p className="text-xl text-slate-300 mb-6">
-              Welcome to Noriega Law! We are dedicated to providing exceptional legal services to our clients. With over 20 years of experience in criminal defense, Attorney Chris Noriega has earned the respect of prosecutors, judges, and peers alike.
+              Welcome to Noriega Law! We are dedicated to providing exceptional legal services to our clients. With over 20 years of experience in criminal defense, Attorney Chris Noriega has earned a reputation for excellence.
             </p>
             <div className="flex justify-center">
               <motion.button
@@ -110,7 +125,7 @@ export default function AboutSection() {
               className="mb-6"
             >
               <p className="text-slate-300">
-                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff&apos;s Department&apos;s Youth Activities League.
+                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff's Department and other community organizations.
               </p>
             </motion.div>
             <motion.div 
@@ -120,7 +135,7 @@ export default function AboutSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p className="text-slate-300">
-                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients&apos; cases.
+                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients' success.
               </p>
             </motion.div>
           </div>
@@ -144,4 +159,16 @@ export default function AboutSection() {
       </motion.div>
     </section>
   );
-};
+}
+
+// Page function declaration
+function Page() {
+  return (
+    <div>
+      <NavigationBar />
+      <AboutSection />
+    </div>
+  );
+}
+
+export default Page;
