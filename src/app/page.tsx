@@ -1,168 +1,147 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import CallToAction from '@/components/CallToAction'
-import FAQAccordion from '@/components/FAQAccordion'
-import PracticeAreaStats from '@/components/PracticeAreaStats'
-import ChatWidget from '@/components/ChatWidget'
-import TestimonialCarousel from '@/components/TestimonialCarousel'
-import { getLawFirmSchema } from '@/lib/schema'
-import { X, Menu } from 'lucide-react'
 
-const faqs = [
-  {
-    question: 'What is the process for a violent crimes defense?',
-    answer: 'The process involves gathering evidence, consulting with legal experts, and preparing a strong defense strategy.'
-  },
-  {
-    question: 'How long does a violent crimes case take to resolve?',
-    answer: 'The duration can vary widely depending on the complexity of the case and the court schedule.'
-  }
-];
-
-const testimonials = [
-  {
-    id: 1,
-    name: "John D.",
-    text: "Exceptional defense strategy that helped resolve my case.",
-    rating: 5
-  },
-  {
-    id: 2,
-    name: "Sarah M.",
-    text: "Professional and understanding throughout the entire process.",
-    rating: 5
-  },
-]
-
-export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+export default function AboutSection() {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
   })
 
+  const attorneyInfo = [
+    {
+      period: "1980-1986",
+      title: "United States Marine Corps",
+      description: "Chris Noriega began his journey shortly after high school when he enlisted in the USMC and was Honorably Discharged as a Non-Commissioned Officer (E-4)."
+    },
+    {
+      period: "1986-1999",
+      title: "Noriega Bail Bonds",
+      description: "After discharge, Chris acquired ownership of Noriega Bail Bonds, gaining intimate familiarity with the criminal justice system as both a bail agent and bounty hunter."
+    },
+    {
+      period: "1999-2003",
+      title: "Western State University College of Law",
+      description: "While attending law school, Chris was on the Honor Roll and earned the prestigious Witkin Award for Academic Excellence."
+    },
+    {
+      period: "2003-Present",
+      title: "Law Offices of Chris Noriega",
+      description: "Established after earning his law degree, Chris has successfully handled virtually every type of criminal case from misdemeanors to felonies with potential life sentences."
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-[url('/images/scales-of-justice-bg.jpg')] bg-cover bg-fixed before:content-[''] before:absolute before:inset-0 before:bg-black before:bg-opacity-70 before:z-0 relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getLawFirmSchema()),
-        }}
-      />
-      
-      {/* Add Navigation */}
-      <nav className="relative z-20">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-white text-2xl font-bold">Your Law Firm</div>
+    <section id="about" className="py-16 bg-[url('/images/scales-of-justice-bg.jpg')] bg-cover bg-fixed before:content-[''] before:absolute before:inset-0 before:bg-black before:bg-opacity-70 before:z-0 relative">
+      <motion.div 
+        ref={ref}
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.7 }}
+        className="container mx-auto px-4 relative z-10"
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-center text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
+            About Us
+          </h2>
           
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 text-white">
-            <a href="#" className="hover:text-slate-300">Home</a>
-            <a href="#" className="hover:text-slate-300">Services</a>
-            <a href="#" className="hover:text-slate-300">About</a>
-            <a href="#" className="hover:text-slate-300">Contact</a>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="absolute top-full left-0 right-0 bg-slate-900/95 backdrop-blur-sm md:hidden">
-              <div className="flex flex-col space-y-4 p-4 text-white">
-                <a href="#" className="hover:text-slate-300">Home</a>
-                <a href="#" className="hover:text-slate-300">Services</a>
-                <a href="/about" className="hover:text-slate-300">About</a>
-                <a href="#" className="hover:text-slate-300">Contact</a>
-              </div>
+          {/* Introduction Card */}
+          <div className="bg-gradient-to-r from-slate-900/90 via-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 mb-12 border border-slate-700/50">
+            <p className="text-xl text-slate-300 mb-6">
+              Welcome to Noriega Law! We are dedicated to providing exceptional legal services to our clients. With over 20 years of experience in criminal defense, Attorney Chris Noriega has earned the respect of prosecutors, judges, and peers alike.
+            </p>
+            <div className="flex justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-600 text-white font-bold rounded-lg shadow-lg hover:from-slate-600 hover:to-slate-500 transition duration-300"
+                onClick={() => window.location.href='tel:626-336-8080'}
+              >
+                Call for FREE Consultation: 626-336-8080
+              </motion.button>
             </div>
-          )}
-        </div>
-      </nav>
-
-      <main className="container mx-auto p-4 relative z-10">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-slate-900/90 via-slate-800/90 to-slate-900/90 text-white rounded-xl shadow-2xl backdrop-blur-sm border border-slate-700/50">
-          <div className="px-6 py-28">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="max-w-3xl mx-auto"
+          </div>
+          
+          {/* Attorney Timeline */}
+          <h3 className="text-2xl font-bold mb-6 text-center text-white">Attorney Chris Noriega's Journey</h3>
+          <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-8 mb-12 border border-slate-700/50">
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-slate-600"></div>
+              
+              {/* Timeline Items */}
+              {attorneyInfo.map((info, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2, duration: 0.5 }}
+                  className={`flex mb-12 last:mb-0 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}
+                >
+                  <div className="w-1/2"></div>
+                  <div className="z-10 flex items-center justify-center">
+                    <div className="bg-slate-100 text-slate-900 w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg">
+                      {index + 1}
+                    </div>
+                  </div>
+                  <div className={`w-1/2 p-4 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
+                    <div className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 p-4 rounded-lg shadow border border-slate-600/50">
+                      <span className="text-sm text-slate-400">{info.period}</span>
+                      <h4 className="text-lg font-bold text-white mb-2">{info.title}</h4>
+                      <p className="text-slate-300">{info.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Community Involvement */}
+          <h3 className="text-2xl font-bold mb-6 text-center text-white">Community Involvement</h3>
+          <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-8 mb-12 border border-slate-700/50">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-6"
             >
-              <h1 className="text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-50 via-white to-slate-100">
-                Expert Legal Defense When You Need It Most
-              </h1>
-              <p className="text-xl mb-10 text-slate-300">
-                We provide top-notch legal services for various practice areas, 
-                including violent crimes defense.
+              <p className="text-slate-300">
+                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff's Department's Youth Activities League.
               </p>
-              <CallToAction variant="primary" />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <p className="text-slate-300">
+                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients' cases.
+              </p>
             </motion.div>
           </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <motion.section 
-          ref={ref}
-          className="container mx-auto px-4 py-24 mt-12"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
-              What Our Clients Say
-            </h2>
-            <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-10 border border-slate-700/50">
-              <TestimonialCarousel testimonials={testimonials} />
-            </div>
+          
+          {/* Closing Statement */}
+          <div className="bg-gradient-to-r from-slate-900/90 via-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 border border-slate-700/50 text-center">
+            <p className="text-xl text-slate-300 mb-6">
+              At Noriega Law, we believe in building strong relationships with our clients, offering personalized solutions, and delivering results. Your success is our priority.
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-600 text-white font-bold rounded-lg shadow-lg hover:from-slate-600 hover:to-slate-500 transition duration-300"
+            >
+              <a href="tel:626-336-8080" className="text-white no-underline">
+                Schedule Your FREE Consultation Today
+              </a>
+            </motion.div>
           </div>
-        </motion.section>
-
-       {/* FAQ Section */}
-        <motion.section
-          className="container mx-auto px-4 py-24"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
-              Frequently Asked Questions
-            </h2>
-            <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-10 border border-slate-700/50">
-              <FAQAccordion faqs={faqs} />
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Statistics Section */}
-        <section className="container mx-auto px-4 py-24">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
-              Our Track Record
-            </h2>
-            <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-10 border border-slate-700/50">
-              <PracticeAreaStats />
-            </div>
-          </div>
-        </section>
-
-        {/* Chat Widget */}
-        <div className="fixed bottom-8 right-8 z-50">
-          <ChatWidget />
         </div>
-      </main>
-    </div>
-  )
-}
+      </motion.div>
+    </section>
+  );
+};
