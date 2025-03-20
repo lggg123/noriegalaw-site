@@ -1,17 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Link from 'next/link'; // Import Link from next/link
 
 // NavigationBar function declaration
 function NavigationBar() {
   return (
     <nav className="bg-slate-800 p-4 fixed w-full top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <a href="/" className="text-white font-bold text-xl">Noriega Law</a>
+        <Link href="/" passHref>
+          <a className="text-white font-bold text-xl">Noriega Law</a>
+        </Link>
         <div>
-          <a href="#about" className="text-white mx-2">About</a>
-          <a href="#services" className="text-white mx-2">Services</a>
-          <a href="#contact" className="text-white mx-2">Contact</a>
+          <Link href="#about" passHref>
+            <a className="text-white mx-2">About</a>
+          </Link>
+          <Link href="#services" passHref>
+            <a className="text-white mx-2">Services</a>
+          </Link>
+          <Link href="#contact" passHref>
+            <a className="text-white mx-2">Contact</a>
+          </Link>
         </div>
       </div>
     </nav>
@@ -125,7 +134,7 @@ function AboutSection() {
               className="mb-6"
             >
               <p className="text-slate-300">
-                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff's Department and other community organizations.
+                When not in court, Chris frequently participates in outreach programs to help at-risk youth and young adults. He has been an invited guest speaker with the Los Angeles Sheriff&apos;s Department and other community organizations.
               </p>
             </motion.div>
             <motion.div 
@@ -135,7 +144,7 @@ function AboutSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p className="text-slate-300">
-                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients' success.
+                Chris also regularly participates in continuing legal education courses to keep current with the latest cases, defense strategies, and tactics that directly impact his clients&apos; success.
               </p>
             </motion.div>
           </div>
