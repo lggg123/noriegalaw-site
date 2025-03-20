@@ -80,7 +80,7 @@ export default function Home() {
               <div className="flex flex-col space-y-4 p-4 text-white">
                 <a href="#" className="hover:text-slate-300">Home</a>
                 <a href="#" className="hover:text-slate-300">Services</a>
-                <a href="#" className="hover:text-slate-300">About</a>
+                <a href="/about" className="hover:text-slate-300">About</a>
                 <a href="#" className="hover:text-slate-300">Contact</a>
               </div>
             </div>
