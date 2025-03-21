@@ -150,8 +150,8 @@ function PracticeAreasPage() {
     }
   ];
 
-  // Mock icons - in a real implementation, you would import actual icons
-  const getIcon = (iconName) => {
+  // Add a type annotation to the iconName parameter
+  const getIcon = (iconName: string) => {
     return (
       <div className="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-white">
         {iconName === 'scales' && <span className="text-xl">⚖️</span>}
