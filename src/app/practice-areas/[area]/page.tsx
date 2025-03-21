@@ -14,14 +14,12 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { Metadata } from 'next';
 
 type Props = {
-  params: Promise<{ area: string }>
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+  params: { area: string }
 }
 
 // Add metadata generation
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const areaKey = resolvedParams.area.split('-').map(word =>
+  const areaKey = params.area.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
   
@@ -33,14 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${areaKey} Criminal Defense`,
       description: areaDetails.description.slice(0, 160),
-      url: `https://yourdomain.com/practice-areas/${resolvedParams.area}`,
+      url: `https://yourdomain.com/practice-areas/${params.area}`,
     },
   };
 }
 
 export default async function PracticeAreaPage({ params }: Props) {
-  const resolvedParams = await params;
-  const areaKey = resolvedParams.area.split('-').map(word =>
+  const areaKey = params.area.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ');
 
@@ -90,4 +87,3 @@ export default async function PracticeAreaPage({ params }: Props) {
     </>
   );
 }
-
