@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 import { Menu, X, Phone, ChevronRight } from 'lucide-react';
-
+import HomeSection from '../components/HomeSection';
+import PracticeAreasHighlight from '../components/PracticeAreasHighlight';
 function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
