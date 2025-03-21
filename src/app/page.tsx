@@ -9,7 +9,7 @@ import HomeSection from '../components/HomeSection';
 import PracticeAreasHighlight from '../components/PracticeAreasHighlight';
 function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   return (
     <nav className="bg-slate-800 p-4 fixed w-full top-0 z-50 shadow-md">
       <div className="container mx-auto">
@@ -17,7 +17,7 @@ function NavigationBar() {
           <Link href="/" className="text-white font-bold text-xl md:text-2xl">
             Noriega Law
           </Link>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6">
             <Link href="/about" className="text-white hover:text-slate-300 transition duration-300">
@@ -25,6 +25,9 @@ function NavigationBar() {
             </Link>
             <Link href="#services" className="text-white hover:text-slate-300 transition duration-300">
               Services
+            </Link>
+            <Link href="/practice-areas" className="text-white hover:text-slate-300 transition duration-300">
+              Practice Areas
             </Link>
             <Link href="#contact" className="text-white hover:text-slate-300 transition duration-300">
               Contact
@@ -37,7 +40,7 @@ function NavigationBar() {
               <span>626-336-8080</span>
             </a>
           </div>
-          
+
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden text-white"
@@ -46,7 +49,7 @@ function NavigationBar() {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-        
+
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <motion.div 
@@ -70,6 +73,13 @@ function NavigationBar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
+              </Link>
+              <Link 
+                href="/practice-areas" 
+                className="text-white hover:text-slate-300 transition duration-300 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Practice Areas
               </Link>
               <Link 
                 href="#contact" 
