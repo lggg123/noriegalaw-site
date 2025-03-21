@@ -361,7 +361,7 @@ function PracticeAreasPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg p-6 shadow-lg relative">
               <div className="absolute -top-4 -left-4 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">"</span>
+                <span className="text-white text-xl">&quot;</span>
               </div>
               <p className="text-slate-600 mb-4 pt-4">
                 Attorney Noriega fought tirelessly to get my DUI charges reduced after identifying issues with the field sobriety test administration. His knowledge of the law made all the difference.
@@ -371,7 +371,7 @@ function PracticeAreasPage() {
             
             <div className="bg-white rounded-lg p-6 shadow-lg relative">
               <div className="absolute -top-4 -left-4 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">"</span>
+                <span className="text-white text-xl">&quot;</span>
               </div>
               <p className="text-slate-600 mb-4 pt-4">
                 Facing felony drug charges was terrifying. Mr. Noriega identified a Fourth Amendment violation that led to all evidence being suppressed and my case dismissed.
@@ -381,7 +381,7 @@ function PracticeAreasPage() {
             
             <div className="bg-white rounded-lg p-6 shadow-lg relative">
               <div className="absolute -top-4 -left-4 w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">"</span>
+                <span className="text-white text-xl">&quot;</span>
               </div>
               <p className="text-slate-600 mb-4 pt-4">
                 I was wrongfully accused of domestic violence during my divorce. Attorney Noriega thoroughly investigated and exposed the false allegations, saving my reputation and freedom.
