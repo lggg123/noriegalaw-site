@@ -39,7 +39,7 @@ function AboutSection() {
               <h3 className="text-2xl font-bold text-blue-500 mb-4">Attorney Chris Noriega</h3>
               <p className="text-white text-lg leading-relaxed mb-4">
                 Welcome to Noriega Law! We are dedicated to providing exceptional legal services to our clients.
-                Attorney Chris Noriega's journey into the law began shortly after he graduated from high school in 1980 
+                Attorney Chris Noriega&apos;s journey into the law began shortly after he graduated from high school in 1980 
                 and enlisted in the United States Marine Corps.
               </p>
               <div className="flex items-center space-x-6">
@@ -98,7 +98,7 @@ function AboutSection() {
             <div className="p-6 rounded-lg bg-slate-700 bg-opacity-50">
               <h4 className="text-xl font-bold text-blue-400 mb-4">Professional Expertise</h4>
               <p className="text-white">
-                Chris's sole focus on criminal defense has resulted in a proven track record that has earned the respect of 
+                Chris&apos;s sole focus on criminal defense has resulted in a proven track record that has earned the respect of 
                 both prosecutors and judges, as well as his peers in the criminal defense bar. He is an expert in post-arrest 
                 representation and provides effective legal representation at the pre-arrest/pre-complaint stage of a police investigation.
               </p>
@@ -107,7 +107,7 @@ function AboutSection() {
               <h4 className="text-xl font-bold text-blue-400 mb-4">Community Commitment</h4>
               <p className="text-white">
                 When Chris is not in court, he frequently participates in various outreach programs to help at-risk youth and young adults. 
-                He has been an invited guest speaker on multiple occasions with the Los Angeles Sheriff's Department and other community organizations.
+                He has been an invited guest speaker on multiple occasions with the Los Angeles Sheriff&apos;s Department and other community organizations.
               </p>
             </div>
           </div>
@@ -116,7 +116,7 @@ function AboutSection() {
           <div className="text-center mb-8">
             <p className="text-white text-lg mb-6">
               Chris also regularly participates in continuing legal education courses to keep current with the latest cases, 
-              defense strategies, and tactics that have a direct impact on his clients' cases. He is committed to using his 
+              defense strategies, and tactics that have a direct impact on his clients&apos; cases. He is committed to using his 
               knowledge and decades of experience as a criminal defense attorney to help you with your case.
             </p>
             <p className="text-white text-lg">
