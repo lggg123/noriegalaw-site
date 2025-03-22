@@ -10,32 +10,38 @@ function PracticeAreasHighlight() {
     {
       title: "Criminal Defense",
       description: "Aggressive defense for all criminal charges from misdemeanors to serious felonies.",
-      icon: Shield
+      icon: Shield,
+      link: "/practice-areas/criminal-defense"
     },
     {
       title: "DUI Defense",
       description: "Expert representation for DUI cases with strategies to minimize or eliminate penalties.",
-      icon: Gavel
+      icon: Gavel,
+      link: "/practice-areas/dui-defense"
     },
     {
       title: "Drug Offenses",
       description: "Comprehensive defense strategies for drug possession, sale, and manufacturing charges.",
-      icon: FileText
+      icon: FileText,
+      link: "/practice-areas/drug-offenses"
     },
     {
       title: "Violent Crimes",
       description: "Experienced defense for assault, battery, and other violent crime allegations.",
-      icon: Scale
+      icon: Scale,
+      link: "/practice-areas/violent-crimes"
     },
     {
       title: "White Collar Crimes",
       description: "Strategic defense for fraud, embezzlement, and other financial crime accusations.",
-      icon: Briefcase
+      icon: Briefcase,
+      link: "/practice-areas/white-collar-crimes"
     },
     {
       title: "Juvenile Offenses",
       description: "Compassionate representation for minors facing criminal charges in the juvenile system.",
-      icon: Users
+      icon: Users,
+      link: "/practice-areas/juvenile-offenses"
     }
   ];
 
@@ -69,7 +75,7 @@ function PracticeAreasHighlight() {
                 <h3 className="text-xl font-bold text-white mb-2">{practice.title}</h3>
                 <p className="text-slate-300 mb-4">{practice.description}</p>
                 <Link 
-                  href="#contact" 
+                  href={practice.link} 
                   className="inline-flex items-center text-indigo-400 font-medium hover:text-indigo-300 transition duration-300"
                 >
                   Learn more
