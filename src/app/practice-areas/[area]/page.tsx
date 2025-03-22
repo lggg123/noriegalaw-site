@@ -1,6 +1,4 @@
-// File: practice-areas/[area].tsx
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 // Define types for our practice area data
@@ -46,7 +44,56 @@ const practiceAreas: PracticeArea[] = [
       }
     ]
   },
-  // Add all other practice areas here...
+  {
+    id: 'misdemeanors',
+    title: 'Misdemeanor Defense',
+    icon: 'gavel',
+    slug: 'misdemeanor-defense',
+    description: 'Strategic defense for misdemeanor charges including DUI, petty theft, simple assault, and other offenses with potential jail time up to one year.',
+    defenseStrategies: [
+      {
+        title: 'Diversion Programs',
+        description: 'We pursue alternatives to traditional prosecution like diversion programs for eligible first-time or non-violent offenders.'
+      },
+      {
+        title: 'Procedural Errors',
+        description: 'We identify police or prosecution errors in procedure, documentation, or evidence handling that could result in dismissal.'
+      },
+      {
+        title: 'Negotiated Pleas',
+        description: 'When appropriate, we negotiate for reduced charges or penalties that minimize consequences to your record and future.'
+      },
+      {
+        title: 'Constitutional Rights Violations',
+        description: 'We examine whether your Miranda rights were properly administered and respected during arrest and questioning.'
+      }
+    ]
+  },
+  {
+    id: 'drugs',
+    title: 'Drug Offenses',
+    icon: 'pills',
+    slug: 'drug-offenses',
+    description: 'Dedicated defense for charges ranging from simple possession to trafficking, with focus on rehabilitation options and penalty reduction.',
+    defenseStrategies: [
+      {
+        title: 'Search Warrant Challenges',
+        description: 'We scrutinize search warrant validity and execution, often revealing procedural flaws that can lead to case dismissal.'
+      },
+      {
+        title: 'Medical Necessity',
+        description: 'For applicable cases, we establish legitimate medical use defenses supported by proper documentation and expert testimony.'
+      },
+      {
+        title: 'Substance Testing Errors',
+        description: 'We investigate potential lab errors, contamination issues, or improper handling that may have compromised test results.'
+      },
+      {
+        title: 'Rehabilitation Alternatives',
+        description: 'We advocate for treatment programs and rehabilitation options as alternatives to incarceration for eligible clients.'
+      }
+    ]
+  },
   {
     id: 'dui',
     title: 'DUI Defense',
@@ -72,44 +119,57 @@ const practiceAreas: PracticeArea[] = [
       }
     ]
   },
-  // Include remaining practice areas...
+  {
+    id: 'whitecollar',
+    title: 'White Collar Defense',
+    icon: 'briefcase',
+    slug: 'white-collar-crimes',
+    description: 'Strategic representation for fraud, embezzlement, identity theft, and other financial or business-related criminal allegations.',
+    defenseStrategies: [
+      {
+        title: 'Intent Challenges',
+        description: 'We establish lack of criminal intent for actions that may have resulted from misunderstanding, mistake, or negligence rather than fraud.'
+      },
+      {
+        title: 'Document Analysis',
+        description: 'We carefully analyze financial records and documentation to identify inconsistencies in the prosecution\'s case.'
+      },
+      {
+        title: 'Expert Testimony',
+        description: 'We engage financial and industry experts to provide context and alternative explanations for allegedly criminal transactions.'
+      },
+      {
+        title: 'Restitution Negotiations',
+        description: 'When appropriate, we negotiate restitution arrangements that can lead to reduced charges or sentencing considerations.'
+      }
+    ]
+  },
+  {
+    id: 'domestic',
+    title: 'Domestic Violence',
+    icon: 'home',
+    slug: 'domestic-violence',
+    description: 'Thoughtful defense for domestic violence allegations, navigating both criminal proceedings and restraining order hearings with discretion.',
+    defenseStrategies: [
+      {
+        title: 'False Accusation Defense',
+        description: 'We investigate motives for false accusations that may arise during contentious divorce or custody disputes.'
+      },
+      {
+        title: 'Self-Defense Claims',
+        description: 'We establish legitimate self-defense actions when evidence supports that force was used to protect oneself from harm.'
+      },
+      {
+        title: 'Witness Credibility Evaluation',
+        description: 'We examine inconsistencies in witness statements and testimony that may undermine the prosecution\'s case.'
+      },
+      {
+        title: 'Anger Management Alternatives',
+        description: 'We advocate for counseling and anger management programs as alternatives to traditional prosecution for eligible cases.'
+      }
+    ]
+  }
 ];
-
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const { params } = context;
-
-  if (!params?.area) {
-    return {
-      notFound: true,
-    };
-  }
-
-  // Find the practice area that matches the slug
-  const areaSlug = params.area as string;
-  const practiceArea = practiceAreas.find(area => area.slug === areaSlug);
-
-  if (!practiceArea) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: { practiceArea },
-  };
-}
-
-export async function getStaticPaths() {
-  // Define the paths for dynamic routes based on practice area slugs
-  const paths = practiceAreas.map(area => ({
-    params: { area: area.slug },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
 
 // Function to render icon based on name
 const getIcon = (iconName: string) => {
@@ -125,12 +185,12 @@ const getIcon = (iconName: string) => {
   );
 };
 
-const PracticeAreaPage = ({ practiceArea }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const PracticeAreaPage = ({ params }: { params: { area: string } }) => {
   const router = useRouter();
 
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  const practiceArea = practiceAreas.find(area => area.slug === params.area);
+
+  if (!practiceArea) return <div>Practice area not found</div>;
 
   return (
     <div className="min-h-screen bg-slate-100">
@@ -197,7 +257,7 @@ const PracticeAreaPage = ({ practiceArea }: InferGetStaticPropsType<typeof getSt
               </div>
               <a 
                 href="tel:6263368080" 
-                className="mt-4 md:mt-0 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 md:py-3 md:text-lg md:px-8"
+                className="mt-4 md:mt-0 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 md:py-4 md:px-8"
               >
                 Call 626-336-8080
               </a>
@@ -211,7 +271,7 @@ const PracticeAreaPage = ({ practiceArea }: InferGetStaticPropsType<typeof getSt
           
           <div className="bg-white rounded-lg shadow-lg p-6 mb-10">
             <p className="text-slate-600 mb-4">
-              Defending against {practiceArea.title.toLowerCase()} charges requires a deep understanding of both the legal framework and the practical realities of the criminal justice system. At Noriega Law, we bring unique insights from our experience on both sides of the bail and defense process.
+              Defending against {practiceArea.title.toLowerCase()} charges requires a deep understanding of both the legal framework and the practical realities of the criminal justice system. At Noriega Law, we combine our extensive experience with a personalized approach to ensure the best possible outcome for your case.
             </p>
             
             <h3 className="text-lg font-bold text-slate-800 mt-6 mb-3">Our Approach to {practiceArea.title} Cases:</h3>
@@ -281,5 +341,11 @@ const PracticeAreaPage = ({ practiceArea }: InferGetStaticPropsType<typeof getSt
     </div>
   );
 };
+
+export async function generateStaticParams() {
+  return practiceAreas.map(area => ({
+    area: area.slug,
+  }));
+}
 
 export default PracticeAreaPage;
