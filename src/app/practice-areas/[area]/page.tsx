@@ -1,5 +1,6 @@
 // src/app/practice-areas/[area]/page.tsx
 
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import ClientComponent from './ClientComponent';
 
 // Define types for our practice area data
@@ -172,7 +173,13 @@ const practiceAreas: PracticeArea[] = [
   }
 ];
 
-const PracticeAreaPage = ({ params }: { params: { area: string } }) => {
+type PageProps = {
+  params: {
+    area: string;
+  };
+};
+
+const PracticeAreaPage = ({ params }: PageProps) => {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) return <div>Practice area not found</div>;
