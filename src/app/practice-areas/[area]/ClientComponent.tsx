@@ -1,7 +1,6 @@
 // src/app/practice-areas/[area]/ClientComponent.tsx
 "use client"; // This directive marks the file as a client component
 
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 type DefenseStrategy = {
@@ -33,7 +32,6 @@ const getIcon = (iconName: string) => {
 };
 
 const ClientComponent = ({ practiceArea }: { practiceArea: PracticeArea }) => {
-  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-slate-100">
