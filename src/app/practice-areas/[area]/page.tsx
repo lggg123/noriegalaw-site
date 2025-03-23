@@ -1,5 +1,3 @@
-// src/app/practice-areas/[area]/page.tsx
-
 import ClientComponent from './ClientComponent';
 
 // Define types for our practice area data
@@ -172,13 +170,15 @@ const practiceAreas: PracticeArea[] = [
   }
 ];
 
-type PageProps = {
+// Updated PageProps to match Next.js 15 expectations
+interface PageProps {
   params: {
     area: string;
   };
-};
+  searchParams?: Record<string, string | string[] | undefined>;
+}
 
-const PracticeAreaPage = ({ params }: PageProps) => {
+const PracticeAreaPage = async ({ params }: PageProps) => {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) return <div>Practice area not found</div>;
