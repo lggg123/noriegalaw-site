@@ -179,7 +179,7 @@ export default function Page(props) {
     return <div>Practice area not found</div>;
   }
   
-  return <ClientComponent practiceArea={practiceArea} />;
+  return <ClientComponent practiceArea={practiceArea} allPracticeAreas={practiceAreas} />;
 }
 
 export async function generateStaticParams() {
