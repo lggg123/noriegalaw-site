@@ -169,9 +169,15 @@ const practiceAreas: PracticeArea[] = [
   }
 ];
 
-// This is a last resort, but I'm going to disable TypeScript checking for this file
-// @ts-nocheck
-export default function Page(props) {
+// Define a flexible prop type that should work with Next.js
+type PageProps = {
+  params: {
+    area: string;
+  };
+  [key: string]: any; // Allow for any additional props that Next.js might add
+};
+
+export default function Page(props: PageProps) {
   const { params } = props;
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
