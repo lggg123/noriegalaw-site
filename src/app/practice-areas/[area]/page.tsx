@@ -1,22 +1,7 @@
 import ClientComponent from './ClientComponent';
 
-// Define types for our practice area data
-type DefenseStrategy = {
-  title: string;
-  description: string;
-};
-
-type PracticeArea = {
-  id: string;
-  title: string;
-  icon: string;
-  description: string;
-  defenseStrategies: DefenseStrategy[];
-  slug: string;
-};
-
 // Our practice areas data
-const practiceAreas: PracticeArea[] = [
+const practiceAreas = [
   {
     id: 'felonies',
     title: 'Felony Defense',
@@ -169,15 +154,8 @@ const practiceAreas: PracticeArea[] = [
   }
 ];
 
-// Define a flexible prop type that should work with Next.js
-type PageProps = {
-  params: {
-    area: string;
-  };
-  [key: string]: any; // Allow for any additional props that Next.js might add
-};
-
-export default function Page(props: PageProps) {
+// Simple JavaScript page component with no TypeScript
+export default function Page(props) {
   const { params } = props;
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
@@ -188,6 +166,7 @@ export default function Page(props: PageProps) {
   return <ClientComponent practiceArea={practiceArea} allPracticeAreas={practiceAreas} />;
 }
 
+// Generate static params
 export async function generateStaticParams() {
   return practiceAreas.map(area => ({
     area: area.slug,
