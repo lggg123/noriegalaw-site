@@ -1,6 +1,5 @@
 // src/app/practice-areas/[area]/page.tsx
 
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import ClientComponent from './ClientComponent';
 
 // Define types for our practice area data
