@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import ClientComponent from './ClientComponent';
 
 // Define types for our practice area data
@@ -170,21 +171,23 @@ const practiceAreas: PracticeArea[] = [
   }
 ];
 
-// Let Next.js infer the types automatically instead of defining our own
-// This approach allows Next.js to provide the correct typing structure
+// Find practice area function
+function getPracticeArea(slug: string): PracticeArea | undefined {
+  return practiceAreas.find(area => area.slug === slug);
+}
 
-export default async function PracticeAreaPage({
-  params,
-}: {
-  params: { area: string };
-}) {
-  const practiceArea = practiceAreas.find(area => area.slug === params.area);
-
-  if (!practiceArea) return <div>Practice area not found</div>;
-
+// Page component
+export default function Page({ params }: { params: { area: string } }) {
+  const practiceArea = getPracticeArea(params.area);
+  
+  if (!practiceArea) {
+    return <div>Practice area not found</div>;
+  }
+  
   return <ClientComponent practiceArea={practiceArea} />;
 }
 
+// Generate static params
 export async function generateStaticParams() {
   return practiceAreas.map(area => ({
     area: area.slug,
