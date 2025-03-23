@@ -170,26 +170,23 @@ const practiceAreas: PracticeArea[] = [
   }
 ];
 
-// Updated PageProps to match Next.js 15 expectations
-interface PageProps {
-  params: {
-    area: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-}
+// Let Next.js infer the types automatically instead of defining our own
+// This approach allows Next.js to provide the correct typing structure
 
-const PracticeAreaPage = async ({ params }: PageProps) => {
+export default async function PracticeAreaPage({
+  params,
+}: {
+  params: { area: string };
+}) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) return <div>Practice area not found</div>;
 
   return <ClientComponent practiceArea={practiceArea} />;
-};
+}
 
 export async function generateStaticParams() {
   return practiceAreas.map(area => ({
     area: area.slug,
   }));
 }
-
-export default PracticeAreaPage;
