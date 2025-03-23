@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import ClientComponent from './ClientComponent';
 
 // Define types for our practice area data
