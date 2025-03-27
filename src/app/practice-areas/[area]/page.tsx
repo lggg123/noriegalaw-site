@@ -1,4 +1,5 @@
 import ClientComponent from './ClientComponent';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 // Our practice areas data
 const practiceAreas = [
@@ -154,8 +155,7 @@ const practiceAreas = [
   }
 ];
 
-export default function Page(props: { params: { area: string } }) {
-  const { params } = props;
+export default function Page({ params }: { params: { area: string } }) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) {
