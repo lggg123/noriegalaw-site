@@ -1,5 +1,4 @@
 import ClientComponent from './ClientComponent';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 // Our practice areas data
 const practiceAreas = [
