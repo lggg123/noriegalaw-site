@@ -155,6 +155,7 @@ const practiceAreas = [
   }
 ];
 
+
 export default function Page({ params }) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
