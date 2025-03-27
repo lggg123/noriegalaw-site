@@ -1,4 +1,5 @@
 import ClientComponent from './ClientComponent';
+import { PageProps } from 'next/types';
 
 // Our practice areas data
 const practiceAreas = [
@@ -154,7 +155,7 @@ const practiceAreas = [
   }
 ];
 
-export default function Page({ params }: { params: { area: string } }) {
+export default function Page({ params }: PageProps<{ area: string }>) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) {
