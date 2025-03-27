@@ -1,4 +1,3 @@
-// @ts-nocheck
 import ClientComponent from './ClientComponent';
 
 // Our practice areas data
@@ -155,8 +154,15 @@ const practiceAreas = [
   }
 ];
 
+// Define the props type directly
+type PageProps = {
+  params: {
+    area: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+};
 
-export default function Page({ params }) {
+export default function Page({ params }: PageProps) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) {
