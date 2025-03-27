@@ -154,8 +154,7 @@ const practiceAreas = [
   }
 ];
 
-// Simple JavaScript page component with no TypeScript
-export default function Page(props) {
+export default function Page(props: { params: { area: string } }) {
   const { params } = props;
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
