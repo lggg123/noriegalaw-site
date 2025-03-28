@@ -164,14 +164,19 @@ export default async function Page({
 }: { 
   params: AreaParams
 }) {
-  // Make sure we resolve any Promise if needed
-  const area = params.area;
-  
-  const practiceArea = practiceAreas.find(area => area.slug === area);
+  // Use params.area directly instead of creating a new variable
+  const practiceArea = practiceAreas.find(item => item.slug === params.area);
 
   if (!practiceArea) {
     return <div>Practice area not found</div>;
   }
   
   return <ClientComponent practiceArea={practiceArea} allPracticeAreas={practiceAreas} />;
+}
+
+// Generate static params
+export async function generateStaticParams() {
+  return practiceAreas.map(area => ({
+    area: area.slug,
+  }));
 }
