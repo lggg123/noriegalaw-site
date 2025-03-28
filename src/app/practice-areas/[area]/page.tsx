@@ -158,19 +158,20 @@ interface AreaParams {
   area: string;
 }
 
-export default function Page({ params }: { params: AreaParams }) {
-  const practiceArea = practiceAreas.find(area => area.slug === params.area);
+// Use the correct pattern for Next.js 15 app router
+export default async function Page({ 
+  params 
+}: { 
+  params: AreaParams
+}) {
+  // Make sure we resolve any Promise if needed
+  const area = params.area;
+  
+  const practiceArea = practiceAreas.find(area => area.slug === area);
 
   if (!practiceArea) {
     return <div>Practice area not found</div>;
   }
   
   return <ClientComponent practiceArea={practiceArea} allPracticeAreas={practiceAreas} />;
-}
-
-// Generate static params
-export async function generateStaticParams() {
-  return practiceAreas.map(area => ({
-    area: area.slug,
-  }));
 }
