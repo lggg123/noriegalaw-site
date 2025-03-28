@@ -162,7 +162,7 @@ type PageProps = {
   searchParams?: Record<string, string | string[] | undefined>;
 };
 
-export default function Page({ params }: PageProps) {
+export default function Page({ params }: { params: any }) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) {
