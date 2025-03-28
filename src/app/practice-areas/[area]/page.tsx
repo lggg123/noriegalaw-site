@@ -154,15 +154,11 @@ const practiceAreas = [
   }
 ];
 
-// Define the props type directly
-type PageProps = {
-  params: {
-    area: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-};
+interface AreaParams {
+  area: string;
+}
 
-export default function Page({ params }: { params: any }) {
+export default function Page({ params }: { params: AreaParams }) {
   const practiceArea = practiceAreas.find(area => area.slug === params.area);
 
   if (!practiceArea) {
