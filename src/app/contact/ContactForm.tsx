@@ -16,15 +16,12 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus('loading');
 
-    // TODO: Implement your form submission logic here
-    // This is where you'd typically send the data to your backend
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (_error) {
-      // Handle error
       setStatus('error');
     }
   };
@@ -96,7 +93,7 @@ export default function ContactForm() {
       </button>
 
       {status === 'success' && (
-        <p className="text-green-600 text-center">Thank you for your message. Weapos;ll be in touch with you shortly.</p>
+        <p className="text-green-600 text-center">Thank you for your message. We&apos;ll be in touch with you shortly!</p>
       )}
 
       {status === 'error' && (
