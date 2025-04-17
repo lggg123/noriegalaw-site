@@ -26,9 +26,9 @@ function NavigationBar() {
             <Link href="#services" className="text-white hover:text-slate-300 transition duration-300">
               Services
             </Link>
-            {/* <Link href="/practice-areas" className="text-white hover:text-slate-300 transition duration-300">
+            <Link href="/practice-areas" className="text-white hover:text-slate-300 transition duration-300">
               Practice Areas
-            </Link> */}
+            </Link>
             <Link href="#contact" className="text-white hover:text-slate-300 transition duration-300">
               Contact
             </Link>
