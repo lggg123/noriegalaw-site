@@ -23,7 +23,8 @@ export default function ContactForm() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch (error) {
+    } catch (_error) {
+      // Handle error
       setStatus('error');
     }
   };
@@ -95,7 +96,7 @@ export default function ContactForm() {
       </button>
 
       {status === 'success' && (
-        <p className="text-green-600 text-center">Thank you for your message. We'll be in touch soon!</p>
+        <p className="text-green-600 text-center">Thank you for your message. Weapos;ll be in touch with you shortly.</p>
       )}
 
       {status === 'error' && (
