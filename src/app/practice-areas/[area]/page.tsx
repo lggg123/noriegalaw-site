@@ -1,7 +1,7 @@
 import ClientComponent from './ClientComponent';
 
 // Our practice areas data
-const practiceAreas = [
+export const practiceAreas = [
   {
     id: 'felonies',
     title: 'Felony Defense',
