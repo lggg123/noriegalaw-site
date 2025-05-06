@@ -18,6 +18,16 @@ export default function PracticeAreasPage() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-16">
+        {/* Back to Homepage Button */}
+        <div className="mb-8 text-center">
+          <Link 
+            href="/" 
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors"
+          >
+            ← Back to Homepage
+          </Link>
+        </div>
+
         <h1 className="text-4xl font-bold mb-8 text-center">
           Our Practice Areas
         </h1>
