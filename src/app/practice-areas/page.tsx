@@ -40,15 +40,15 @@ export default function PracticeAreasPage() {
             <Link 
               href={`/practice-areas/${area.slug}`} 
               key={area.id}
-              className="group bg-white/90 p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 backdrop-blur-sm"
+              className="group bg-slate-800/95 p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border border-slate-700 backdrop-blur-sm"
             >
-              <h2 className="text-2xl font-semibold mb-3 group-hover:text-blue-800 transition-colors">
+              <h2 className="text-2xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors">
                 {area.title}
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 {area.description}
               </p>
-              <div className="mt-4 text-blue-700 group-hover:text-blue-900 font-medium">
+              <div className="mt-4 text-blue-400 group-hover:text-blue-300 font-medium">
                 Learn More →
               </div>
             </Link>

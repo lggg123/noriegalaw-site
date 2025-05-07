@@ -29,31 +29,31 @@ export default function ContactPage() {
           </Link>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-8">
-          <h1 className="text-4xl font-bold mb-4 text-center">Contact Us</h1>
-          <p className="text-lg text-gray-600 text-center mb-8">
+        <div className="max-w-4xl mx-auto bg-slate-800 backdrop-blur-sm rounded-lg shadow-xl p-8">
+          <h1 className="text-4xl font-bold mb-4 text-center text-white">Contact Us</h1>
+          <p className="text-lg text-gray-300 text-center mb-8">
             Schedule a confidential consultation with our experienced legal team.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Information */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-semibold mb-4">Our Office</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-white">Our Office</h2>
               <div className="space-y-4">
-                <p className="flex items-center">
-                  <span className="font-medium mr-2">Address:</span>
+                <p className="flex items-center text-gray-300">
+                  <span className="font-medium mr-2 text-white">Address:</span>
                   <span>201 N 1st St<br />La Puente, CA 91744</span>
                 </p>
-                <p className="flex items-center">
-                  <span className="font-medium mr-2">Phone:</span>
+                <p className="flex items-center text-gray-300">
+                  <span className="font-medium mr-2 text-white">Phone:</span>
                   <span>(626)-336-8080</span>
                 </p>
-                <p className="flex items-center">
-                  <span className="font-medium mr-2">Email:</span>
+                <p className="flex items-center text-gray-300">
+                  <span className="font-medium mr-2 text-white">Email:</span>
                   <span>noriegalaw@gmail.com</span>
                 </p>
-                <p className="flex items-center">
-                  <span className="font-medium mr-2">Hours:</span>
+                <p className="flex items-center text-gray-300">
+                  <span className="font-medium mr-2 text-white">Hours:</span>
                   <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
                 </p>
               </div>

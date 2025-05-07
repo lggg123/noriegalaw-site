@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 import HomeSection from '../components/HomeSection';
 import PracticeAreasHighlight from '../components/PracticeAreasHighlight';
+import GoogleReviews from '../components/GoogleReviews';
+
 function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -29,7 +31,7 @@ function NavigationBar() {
             <Link href="/practice-areas" className="text-white hover:text-slate-300 transition duration-300">
               Practice Areas
             </Link>
-            <Link href="#contact" className="text-white hover:text-slate-300 transition duration-300">
+            <Link href="/contact" className="text-white hover:text-slate-300 transition duration-300">
               Contact
             </Link>
             <a 
@@ -296,6 +298,7 @@ function Page() {
       <HomeSection />
       <PracticeAreasHighlight />
       <AboutSection />
+      <GoogleReviews /> {/* Add the reviews section here */}
     </div>
   );
 }

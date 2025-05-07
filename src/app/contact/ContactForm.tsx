@@ -29,7 +29,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="name" className="block text-sm font-medium text-white">
           Full Name
         </label>
         <input
@@ -37,13 +37,13 @@ export default function ContactForm() {
           id="name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="email" className="block text-sm font-medium text-white">
           Email
         </label>
         <input
@@ -51,13 +51,13 @@ export default function ContactForm() {
           id="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="phone" className="block text-sm font-medium text-white">
           Phone Number
         </label>
         <input
@@ -65,13 +65,13 @@ export default function ContactForm() {
           id="phone"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="message" className="block text-sm font-medium text-white">
           Message
         </label>
         <textarea
@@ -79,7 +79,7 @@ export default function ContactForm() {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           required
         />
       </div>
