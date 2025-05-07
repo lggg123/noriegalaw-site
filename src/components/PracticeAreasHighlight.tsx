@@ -45,29 +45,63 @@ function PracticeAreasHighlight() {
     }
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <section id="services" className="py-20 bg-slate-900">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Practice Areas</h2>
           <p className="text-lg text-slate-300 max-w-3xl mx-auto">
             At Noriega Law, we specialize in these key practice areas, providing expert legal representation and guidance.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {practices.map((practice, index) => {
             const Icon = practice.icon;
             
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -5 }}
-                className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl shadow-xl p-6 border border-slate-700/50 hover:border-indigo-500/50 transition duration-300"
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl shadow-xl p-6 border border-slate-700/50 hover:border-indigo-500/50 transition-colors duration-300"
               >
                 <div className="bg-indigo-600/20 p-3 rounded-lg w-14 h-14 mb-4 flex items-center justify-center">
                   <Icon size={28} className="text-indigo-400" />
@@ -84,9 +118,14 @@ function PracticeAreasHighlight() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
         
-        <div className="flex justify-center mt-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="flex justify-center mt-12"
+        >
           <motion.a
             href="tel:626-336-8080"
             whileHover={{ scale: 1.05 }}
@@ -96,7 +135,7 @@ function PracticeAreasHighlight() {
             <Phone size={20} className="mr-2" />
             <span>Schedule Your FREE Consultation: 626-336-8080</span>
           </motion.a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
