@@ -8,6 +8,8 @@ import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 import HomeSection from '../components/HomeSection';
 import PracticeAreasHighlight from '../components/PracticeAreasHighlight';
 import GoogleReviews from '../components/GoogleReviews';
+import AIChatAssistant from '@/components/AIChatAssistant';
+import BlogSection from '@/components/BlogSection';
 
 function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +29,12 @@ function NavigationBar() {
             </Link>
             <Link href="#services" className="text-white hover:text-slate-300 transition duration-300">
               Services
+            </Link>
+            <Link 
+              href="/intake" 
+              className="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg"
+            >
+              Free Case Evaluation
             </Link>
             <Link href="/practice-areas" className="text-white hover:text-slate-300 transition duration-300">
               Practice Areas
@@ -299,6 +307,8 @@ function Page() {
       <PracticeAreasHighlight />
       <AboutSection />
       <GoogleReviews /> {/* Add the reviews section here */}
+      <BlogSection />
+      <AIChatAssistant />
     </div>
   );
 }

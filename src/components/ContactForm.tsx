@@ -1,23 +1,57 @@
 "use client"
 
+import { trackLeadConversion } from '@/lib/analytics';
 import { useState, FormEvent } from 'react';
 
 interface ContactFormProps {
   practiceArea?: string;
 }
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  caseType: string;  // Added this field
+}
+
 export default function ContactForm({ practiceArea }: ContactFormProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     message: '',
+    caseType: ''  // Initialize with empty string
   });
+
+  const [status, setStatus] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log('Form submitted:', { ...formData, practiceArea });
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setStatus('success');
+      setFormData({
+        name: '', 
+        email: '', 
+        phone: '', 
+        message: '',
+        caseType: ''  // Don't forget to reset this field
+      });
+
+      // Track the conversion
+      trackLeadConversion({
+        type: 'form',
+        source: 'contact_form',
+        metadata: {
+          formType: 'contact',
+          caseType: formData.caseType,
+        }
+      });
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (

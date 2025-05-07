@@ -1,5 +1,7 @@
 import { NextConfig } from 'next';
 
+const withMDX = require('@next/mdx')();
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   // Your existing config...
   typescript: {
@@ -9,6 +11,7 @@ const nextConfig: NextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  // pageextensions: ['ts','tsx','js','jsx','md','mdx'],
 };
 
 export default nextConfig;

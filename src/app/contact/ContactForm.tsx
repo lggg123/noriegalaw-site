@@ -1,5 +1,6 @@
 'use client';
 
+import { trackLeadConversion } from '@/lib/analytics';
 import { useState } from 'react';
 
 export default function ContactForm() {
@@ -8,6 +9,7 @@ export default function ContactForm() {
     email: '',
     phone: '',
     message: '',
+    caseType: ''
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -20,7 +22,17 @@ export default function ContactForm() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', message: '', caseType: '' });
+
+      // Track the conversion
+      trackLeadConversion({
+        type: 'form',
+        source: 'contact_form',
+        metadata: {
+          formType: 'contact',
+          caseType: formData.caseType,
+        }
+      });
     } catch {
       setStatus('error');
     }
@@ -82,6 +94,25 @@ export default function ContactForm() {
           className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           required
         />
+      </div>
+
+      <div>
+        <label htmlFor="caseType" className="block text-sm font-medium text-white">
+          Type of Case
+        </label>
+        <select
+          id="caseType"
+          value={formData.caseType}
+          onChange={(e) => setFormData({ ...formData, caseType: e.target.value })}
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          required
+        >
+          <option value="">Select a case type</option>
+          <option value="criminal">Criminal Law</option>
+          <option value="civil">Civil Law</option>
+          <option value="family">Family Law</option>
+          <option value="other">Other</option>
+        </select>
       </div>
 
       <button
