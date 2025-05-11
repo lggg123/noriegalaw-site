@@ -13,8 +13,8 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">Contact Us</h4>
             <p className="mb-2">Law Offices of Chris Noriega</p>
-            <p className="mb-2">15928 E. Gale Ave.</p>
-            <p className="mb-2">Hacienda Heights, CA 91745</p>
+            <p className="mb-2">201 N First St.</p>
+            <p className="mb-2">La Puente, CA 91744</p>
             <p className="mb-2">
               <a href="tel:+16263368080" className="hover:text-white">
                 (626) 336-8080
