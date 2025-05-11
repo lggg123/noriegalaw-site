@@ -1,40 +1,22 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Mistral } from '@mistralai/mistralai';
 import { trackLeadConversion } from '@/lib/analytics';
 
-// Update ChatMessage type to include system role
-interface ChatMessage {
-  role: 'user' | 'assistant' | 'system';
-  content: string;
-}
+// Add this to prevent hydration mismatch
+const ClientOnlyMistral = () => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-// interface ContentChunk {
-//   text: string;
-//   // Add other properties if needed
-// }
-
-// const systemPrompt = {
-//     role: 'system',
-//     content: `You are a helpful legal assistant for the Law Offices of Chris Noriega. 
-//     You specialize in criminal defense, DUI cases, and related legal matters.
-//     Always encourage users to schedule a consultation for specific legal advice.
-//     Phone: (626)-336-8080`
-//   };
-
-const MAX_RETRIES = 3;
-const retry = async (fn: () => Promise<any>, retriesLeft: number): Promise<any> => {
-  try {
-    return await fn();
-  } catch (error) {
-    if (retriesLeft === 0) throw error;
-    return retry(fn, retriesLeft - 1);
+  if (!mounted) {
+    return null; // Return nothing during server rendering
   }
-};
-
-const AIChatAssistant = () => {
-  // Initialize messages state with system prompt
+  
+  // The rest of your component
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'system',
@@ -54,6 +36,15 @@ const AIChatAssistant = () => {
 
     setIsLoading(true);
     setError(null);
+    
+    // Safely check for API key
+    const apiKey = process.env.NEXT_PUBLIC_MISTRAL_API_KEY;
+    if (!apiKey) {
+      console.error("Missing Mistral API key");
+      setError("API configuration error. Please contact the administrator.");
+      setIsLoading(false);
+      return;
+    }
     
     const newMessage: ChatMessage = {
       role: 'user',
@@ -185,6 +176,27 @@ const AIChatAssistant = () => {
       )}
     </div>
   );
+};
+
+// Interface definitions stay outside
+interface ChatMessage {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
+
+const MAX_RETRIES = 3;
+const retry = async (fn: () => Promise<any>, retriesLeft: number): Promise<any> => {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retriesLeft === 0) throw error;
+    return retry(fn, retriesLeft - 1);
+  }
+};
+
+// Use this as your exported component
+const AIChatAssistant = () => {
+  return <ClientOnlyMistral />;
 };
 
 export default AIChatAssistant;
