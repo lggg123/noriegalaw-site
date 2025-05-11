@@ -4,19 +4,26 @@ import { useState, useEffect } from 'react';
 import { Mistral } from '@mistralai/mistralai';
 import { trackLeadConversion } from '@/lib/analytics';
 
-// Add this to prevent hydration mismatch
-const ClientOnlyMistral = () => {
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+// Interface definitions
+interface ChatMessage {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
 
-  if (!mounted) {
-    return null; // Return nothing during server rendering
+// Fix the retry function typing
+const MAX_RETRIES = 3;
+const retry = async <T,>(fn: () => Promise<T>, retriesLeft: number): Promise<T> => {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retriesLeft === 0) throw error;
+    return retry(fn, retriesLeft - 1);
   }
-  
-  // The rest of your component
+};
+
+const ClientOnlyMistral = () => {
+  // ALL hooks must be at the top level, before any conditionals
+  const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'system',
@@ -30,7 +37,16 @@ const ClientOnlyMistral = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
+  // Handle the case when component isn't mounted yet
+  if (!mounted) {
+    return null; // Return nothing during server rendering
+  }
+  
   const handleSendMessage = async () => {
     if (isLoading || !inputMessage.trim()) return;
 
@@ -68,10 +84,18 @@ const ClientOnlyMistral = () => {
 
       const content = response.choices?.[0]?.message?.content;
       
-      // Handle different content types
+      // This causes the TypeScript error
       const messageContent = Array.isArray(content) 
-        ? content.map(chunk => chunk.text).join('')  // Handle ContentChunk[]
-        : content || 'No response received';  // Handle string or undefined
+        ? content.map(chunk => {
+            // Check chunk type before accessing properties
+            if ('text' in chunk) {
+              return chunk.text;
+            } else if (chunk.type === 'image_url') {
+              return '[Image]'; // Handle image chunks appropriately
+            }
+            return ''; // Fallback for other chunk types
+          }).join('')
+        : content || 'No response received';
 
       const assistantMessage: ChatMessage = {
         role: 'assistant',
@@ -176,22 +200,6 @@ const ClientOnlyMistral = () => {
       )}
     </div>
   );
-};
-
-// Interface definitions stay outside
-interface ChatMessage {
-  role: 'user' | 'assistant' | 'system';
-  content: string;
-}
-
-const MAX_RETRIES = 3;
-const retry = async (fn: () => Promise<any>, retriesLeft: number): Promise<any> => {
-  try {
-    return await fn();
-  } catch (error) {
-    if (retriesLeft === 0) throw error;
-    return retry(fn, retriesLeft - 1);
-  }
 };
 
 // Use this as your exported component
