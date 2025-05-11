@@ -10,18 +10,18 @@ interface ChatMessage {
   content: string;
 }
 
-interface ContentChunk {
-  text: string;
-  // Add other properties if needed
-}
+// interface ContentChunk {
+//   text: string;
+//   // Add other properties if needed
+// }
 
-const systemPrompt = {
-    role: 'system',
-    content: `You are a helpful legal assistant for the Law Offices of Chris Noriega. 
-    You specialize in criminal defense, DUI cases, and related legal matters.
-    Always encourage users to schedule a consultation for specific legal advice.
-    Phone: (626)-336-8080`
-  };
+// const systemPrompt = {
+//     role: 'system',
+//     content: `You are a helpful legal assistant for the Law Offices of Chris Noriega. 
+//     You specialize in criminal defense, DUI cases, and related legal matters.
+//     Always encourage users to schedule a consultation for specific legal advice.
+//     Phone: (626)-336-8080`
+//   };
 
 const MAX_RETRIES = 3;
 const retry = async (fn: () => Promise<any>, retriesLeft: number): Promise<any> => {
