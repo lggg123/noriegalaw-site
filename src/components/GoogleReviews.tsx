@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 
 export default function GoogleReviews() {
   useEffect(() => {
-    // Load the SociableKit script
+    // Load the Elfsight script
     const script = document.createElement('script');
-    script.src = 'https://widgets.sociablekit.com/google-reviews/widget.js';
-    script.defer = true;
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
     document.body.appendChild(script);
 
     return () => {
@@ -20,7 +20,10 @@ export default function GoogleReviews() {
     <section className="py-16 bg-slate-800">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center text-white mb-8">What Our Clients Say</h2>
-        <div className='sk-ww-google-reviews' data-embed-id='25554278'></div>
+        <div
+          className="elfsight-app-634dd6fe-0b3f-4056-8bb2-60903211a12e"
+          data-elfsight-app-lazy
+        ></div>
       </div>
     </section>
   );
