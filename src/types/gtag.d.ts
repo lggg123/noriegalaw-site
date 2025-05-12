@@ -7,6 +7,7 @@ declare global {
           source?: string;
           value?: number;
           timestamp?: string;
+          event_callback?: () => void;
           [key: string]: any;
         }
       ) => void;
