@@ -8,9 +8,17 @@ export default async function BlogPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-white mb-8">
-        Legal Resources & Insights
-      </h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-white">
+          Legal Resources & Insights
+        </h1>
+        <Link 
+          href="/"
+          className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors flex items-center"
+        >
+          ← Back to Home
+        </Link>
+      </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post: BlogPost) => (
