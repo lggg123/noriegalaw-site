@@ -49,7 +49,12 @@ const CaseEvaluationPopup = () => {
             </div>
 
             <div className="text-center mb-6">
-              <Link href="/intake" className="text-indigo-600 hover:text-indigo-700">
+              {/* Add onClick handler to close popup before navigation */}
+              <Link 
+                href="/intake"
+                onClick={() => setIsOpen(false)}
+                className="text-indigo-600 hover:text-indigo-700"
+              >
                 Want a more detailed evaluation? Try our Smart Intake Form →
               </Link>
             </div>

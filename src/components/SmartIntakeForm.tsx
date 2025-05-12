@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Mistral } from '@mistralai/mistralai';
 import { trackLeadConversion } from '@/lib/analytics';
+import Link from 'next/link';
 
 interface FormData {
   name: string;
@@ -95,7 +96,15 @@ const SmartIntakeForm = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-xl">
-      <h2 className="text-2xl font-bold mb-6">Smart Case Evaluation</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Smart Case Evaluation</h2>
+        <Link 
+          href="/"
+          className="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md transition-colors flex items-center"
+        >
+          ← Back to Home
+        </Link>
+      </div>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
@@ -186,6 +195,17 @@ const SmartIntakeForm = () => {
           <div className="whitespace-pre-line text-gray-700">
             {analysis}
           </div>
+        </div>
+      )}
+
+      {analysis && (
+        <div className="mt-6 text-center">
+          <Link 
+            href="/"
+            className="inline-block px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md transition-colors"
+          >
+            Back to Home
+          </Link>
         </div>
       )}
     </div>
