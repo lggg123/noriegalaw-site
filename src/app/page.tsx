@@ -32,7 +32,7 @@ function NavigationBar() {
             </Link>
             <Link 
               href="/intake" 
-              className="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg"
+              className="text-white px-4 py-2 rounded-lg"
             >
               Free Case Evaluation
             </Link>
