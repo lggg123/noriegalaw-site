@@ -7,5 +7,3 @@ interface TextChunk {
     type: 'image_url';
     url: string;   // Required for image chunks
   }
-  
-  type ContentChunk = TextChunk | ImageURLChunk;
