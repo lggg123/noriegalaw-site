@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function AboutSection() {
   return (
@@ -12,6 +13,16 @@ function AboutSection() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Back button */}
+        <div className="flex justify-end mb-6">
+          <Link 
+            href="/"
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+        
         {/* Title with decorative element */}
         <div className="flex items-center justify-center mb-16">
           <div className="w-12 h-1 bg-blue-600 mr-6"></div>
