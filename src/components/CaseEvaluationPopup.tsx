@@ -44,7 +44,7 @@ const CaseEvaluationPopup = () => {
                 Get a Free Case Evaluation
               </h2>
               <p className="mt-2 text-gray-600">
-                Don't face legal challenges alone. Our experienced team is here to help.
+                Don&apos;t face legal challenges alone. Our experienced team is here to help.
               </p>
             </div>
 
