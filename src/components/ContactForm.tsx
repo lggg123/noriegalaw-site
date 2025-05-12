@@ -12,7 +12,7 @@ interface FormData {
   email: string;
   phone: string;
   message: string;
-  caseType: string;  // Added this field
+  caseType: string;
 }
 
 export default function ContactForm({ practiceArea }: ContactFormProps) {
@@ -21,7 +21,8 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
     email: '',
     phone: '',
     message: '',
-    caseType: ''  // Initialize with empty string
+    // Use the practiceArea prop if provided, otherwise empty string
+    caseType: practiceArea || ''
   });
 
   const [status, setStatus] = useState<string | null>(null);
@@ -37,7 +38,7 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
         email: '', 
         phone: '', 
         message: '',
-        caseType: ''  // Don't forget to reset this field
+        caseType: ''
       });
 
       // Track the conversion
@@ -54,8 +55,20 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
     }
   };
 
+  // Display status message to the user
+  const renderStatusMessage = () => {
+    if (status === 'success') {
+      return <p className="text-green-600 mt-2">Message sent successfully!</p>;
+    }
+    if (status === 'error') {
+      return <p className="text-red-600 mt-2">Failed to send. Please try again.</p>;
+    }
+    return null;
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {renderStatusMessage()}
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
           Name
