@@ -17,20 +17,20 @@ const CaseEvaluationPopup = () => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div className="fixed inset-0 flex items-center justify-center z-50">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50"
+            className="absolute inset-0 bg-black/50"
             onClick={() => setIsOpen(false)}
           />
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-white rounded-lg shadow-2xl z-50 p-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="relative w-full max-w-lg mx-auto bg-white rounded-lg shadow-2xl z-10 p-6 m-4"
           >
             <button
               onClick={() => setIsOpen(false)}
@@ -89,7 +89,7 @@ const CaseEvaluationPopup = () => {
               Free consultation. Confidential and secure.
             </p>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );
