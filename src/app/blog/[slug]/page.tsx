@@ -46,7 +46,7 @@ export default async function BlogPost({ params }: Props) {
         </div>
       </header>
 
-      <div className="prose prose-invert max-w-none">
+      <div className="prose text-white prose-invert max-w-none">
         {post.content}
       </div>
 
