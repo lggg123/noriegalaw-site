@@ -25,3 +25,34 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
   return posts
 }
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    // Check if the post exists
+    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    if (!fs.existsSync(fullPath)) {
+      return null;
+    }
+    
+    // Read the file content
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    
+    // Parse the frontmatter and content
+    const { data, content } = matter(fileContents);
+    
+    // Return the post data
+    return {
+      slug,
+      title: data.title,
+      date: data.date,
+      excerpt: data.excerpt,
+      author: data.author,
+      category: data.category,
+      tags: data.tags || [],
+      content: content,
+    };
+  } catch (error) {
+    console.error(`Error getting post with slug: ${slug}`, error);
+    return null;
+  }
+}

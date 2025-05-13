@@ -1,6 +1,13 @@
 import { NextConfig } from 'next';
 
-const withMDX = require('@next/mdx')();
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   // Your existing config...
@@ -11,7 +18,10 @@ const nextConfig: NextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  // pageextensions: ['ts','tsx','js','jsx','md','mdx'],
 };
 
-export default nextConfig;
+// Correct format for TypeScript config with MDX
+export default withMDX({
+  ...nextConfig,
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+});
