@@ -54,7 +54,7 @@ const ClientOnlyMistral = () => {
     setError(null);
     
     // Safely check for API key
-    const apiKey = process.env.NEXT_PUBLIC_MISTRAL_API_KEY;
+    const apiKey = process.env.MISTRAL_API_KEY;
     if (!apiKey) {
       console.error("Missing Mistral API key");
       setError("API configuration error. Please contact the administrator.");

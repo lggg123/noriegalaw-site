@@ -26,7 +26,7 @@ const SmartIntakeForm = () => {
 
   const analyzeCase = async (description: string): Promise<string> => {
     const client = new Mistral({
-      apiKey: process.env.NEXT_PUBLIC_MISTRAL_API_KEY
+      apiKey: process.env.MISTRAL_API_KEY
     });
 
     const response = await client.chat.complete({
