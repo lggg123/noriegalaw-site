@@ -57,18 +57,20 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             <span className="text-gray-400">{post.title}</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          {/* Enhanced Title with Gradient */}
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent mb-4">
             {post.title}
           </h1>
           
-          <div className="flex items-center text-gray-400 mb-8">
-            <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
-            <span className="mx-2">•</span>
-            <span className="capitalize">{post.category?.replace('-', ' ')}</span>
+          {/* Enhanced Metadata */}
+          <div className="flex items-center text-gray-300 mb-8 p-4 bg-slate-800/50 rounded-lg border-l-4 border-indigo-500">
+            <span className="text-blue-300">{format(new Date(post.date), 'MMMM d, yyyy')}</span>
+            <span className="mx-2 text-indigo-400">•</span>
+            <span className="capitalize text-green-300 font-medium">{post.category?.replace('-', ' ')}</span>
             {post.author && (
               <>
-                <span className="mx-2">•</span>
-                <span>By {post.author}</span>
+                <span className="mx-2 text-indigo-400">•</span>
+                <span className="text-yellow-300">By {post.author}</span>
               </>
             )}
           </div>
@@ -77,7 +79,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             {post.content}
           </MdxContent>
         </article>
-        <div className="w-full h-2 bg-white mt-12"></div>
+        
+        {/* Enhanced Separator */}
+        <div className="w-full h-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500 mt-12 rounded-full"></div>
       </div>
     </div>
   );
