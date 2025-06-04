@@ -77,7 +77,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             {post.content}
           </MdxContent>
         </article>
-        <div className="w-full h-2 bg-white mt-12"></div><div className="w-full h-2 bg-white mt-12"></div>
+        <div className="w-full h-2 bg-white mt-12"></div>
       </div>
     </div>
   );
