@@ -306,8 +306,8 @@ function Page() {
       <HomeSection />
       <PracticeAreasHighlight />
       <AboutSection />
-      <GoogleReviews /> {/* Add the reviews section here */}
       <BlogSection />
+      <GoogleReviews />
       <AIChatAssistant />
     </div>
   );
