@@ -126,11 +126,16 @@ const ClientOnlyMistral = () => {
       
       {isOpen && (
         <div className="absolute bottom-20 right-0 w-96 bg-white rounded-lg shadow-xl">
-          <div className="p-4 border-b flex justify-between items-center">
-            <h3 className="text-lg font-semibold">Legal Assistant</h3>
+          <div className="p-4 border-b flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-600">
+            <h3 className="text-lg font-bold text-white flex items-center">
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+              </svg>
+              Legal Assistant
+            </h3>
             <button 
               onClick={() => setIsOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-white hover:text-gray-200 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -140,45 +145,82 @@ const ClientOnlyMistral = () => {
           
           <div className="h-96 overflow-y-auto p-4 space-y-4">
             {error && (
-              <div className="text-red-500 text-sm text-center">
+              <div className="text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg border border-red-200">
+                <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
                 {error}
               </div>
             )}
+            
+            {/* Add initial greeting if no messages */}
+            {messages.filter(m => m.role !== 'system').length === 0 && (
+              <div className="text-center text-gray-500 py-8">
+                <div className="w-16 h-16 mx-auto mb-4 bg-indigo-100 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <p className="text-sm font-medium text-gray-700">Hello! I'm here to help with your legal questions.</p>
+                <p className="text-xs text-gray-500 mt-1">Ask me about criminal defense, DUI cases, or general legal matters.</p>
+              </div>
+            )}
+            
             {/* Only show non-system messages in UI */}
             {messages.filter(m => m.role !== 'system').map((message, index) => (
               <div
                 key={index}
                 className={`${
                   message.role === 'user' 
-                    ? 'ml-auto bg-indigo-600 text-white' 
-                    : 'mr-auto bg-gray-200 text-gray-800'
-                } max-w-[80%] rounded-lg p-3`}
+                    ? 'ml-auto bg-gradient-to-r from-indigo-600 to-blue-600 text-white' 
+                    : 'mr-auto bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border border-gray-300'
+                } max-w-[80%] rounded-lg p-3 shadow-sm`}
               >
-                {message.content}
+                <div className="text-sm leading-relaxed">
+                  {message.content}
+                </div>
               </div>
             ))}
+            
+            {isLoading && (
+              <div className="mr-auto bg-gray-100 max-w-[80%] rounded-lg p-3 border border-gray-300">
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                  </div>
+                  <span className="text-sm">Typing...</span>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="p-4 border-t">
+          <div className="p-4 border-t bg-gray-50">
             <div className="flex space-x-2">
               <input
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder="Type your message..."
-                className="flex-1 p-2 border rounded-lg focus:outline-none focus:border-indigo-600"
+                placeholder="Type your legal question..."
+                className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={isLoading}
-                className={`px-4 py-2 text-white rounded-lg ${
+                className={`px-4 py-3 text-white rounded-lg transition-colors text-sm font-medium ${
                   isLoading 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-indigo-600 hover:bg-indigo-700'
+                    : 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-sm'
                 }`}
               >
-                {isLoading ? 'Sending...' : 'Send'}
+                {isLoading ? (
+                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                ) : 'Send'}
               </button>
             </div>
           </div>
