@@ -8,7 +8,6 @@ interface ChatMessage {
   content: string;
 }
 
-// Keep the retry function for fetch calls
 const MAX_RETRIES = 3;
 const retry = async <T,>(fn: () => Promise<T>, retriesLeft: number): Promise<T> => {
   try {
@@ -39,6 +38,11 @@ const ClientOnlyMistral = () => {
     setMounted(true);
   }, []);
 
+  // Add this conditional return to use the mounted variable
+  if (!mounted) {
+    return null;
+  }
+
   const handleSendMessage = async () => {
     if (isLoading || !inputMessage.trim()) return;
 
@@ -50,12 +54,10 @@ const ClientOnlyMistral = () => {
       content: inputMessage
     };
 
-    // Add user message to chat
     setMessages(prev => [...prev, newMessage]);
     setInputMessage('');
 
     try {
-      // Call your API route instead of Mistral directly
       const response = await retry(() => fetch('/api/legal-assistant', {
         method: 'POST',
         headers: {
@@ -89,7 +91,6 @@ const ClientOnlyMistral = () => {
 
       setMessages(prev => [...prev, assistantMessage]);
 
-      // Track chat interaction
       trackLeadConversion({
         type: 'chat',
         source: 'ai_assistant',
