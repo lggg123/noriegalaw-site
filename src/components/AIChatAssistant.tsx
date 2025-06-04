@@ -1,16 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Mistral } from '@mistralai/mistralai';
 import { trackLeadConversion } from '@/lib/analytics';
 
-// Interface definitions
 interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
   content: string;
 }
 
-// Fix the retry function typing
+// Keep the retry function for fetch calls
 const MAX_RETRIES = 3;
 const retry = async <T,>(fn: () => Promise<T>, retriesLeft: number): Promise<T> => {
   try {
@@ -22,7 +20,6 @@ const retry = async <T,>(fn: () => Promise<T>, retriesLeft: number): Promise<T> 
 };
 
 const ClientOnlyMistral = () => {
-  // ALL hooks must be at the top level, before any conditionals
   const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -42,58 +39,46 @@ const ClientOnlyMistral = () => {
     setMounted(true);
   }, []);
 
-  // Handle the case when component isn't mounted yet
-  if (!mounted) {
-    return null; // Return nothing during server rendering
-  }
-  
   const handleSendMessage = async () => {
     if (isLoading || !inputMessage.trim()) return;
 
     setIsLoading(true);
     setError(null);
     
-    // Safely check for API key
-    const apiKey = process.env.MISTRAL_API_KEY;
-    if (!apiKey) {
-      console.error("Missing Mistral API key");
-      setError("API configuration error. Please contact the administrator.");
-      setIsLoading(false);
-      return;
-    }
-    
     const newMessage: ChatMessage = {
       role: 'user',
       content: inputMessage
     };
 
-    // Add only user message to visible messages
-    setMessages(prev => [...prev.slice(1), newMessage]); // Remove system prompt from UI
+    // Add user message to chat
+    setMessages(prev => [...prev, newMessage]);
     setInputMessage('');
 
     try {
-      const client = new Mistral({
-        apiKey: process.env.MISTRAL_API_KEY
-      });
-
-      // Include system prompt in API call
-      const response = await retry(() => client.chat.complete({
-        model: 'mistral-large-latest',
-        messages: [...messages, newMessage] // This now includes system prompt
+      // Call your API route instead of Mistral directly
+      const response = await retry(() => fetch('/api/legal-assistant', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [...messages, newMessage]
+        }),
       }), MAX_RETRIES);
-
-      const content = response.choices?.[0]?.message?.content;
       
-      // This causes the TypeScript error
+      if (!response.ok) {
+        throw new Error(`API responded with status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const content = data.choices?.[0]?.message?.content;
+      
       const messageContent = Array.isArray(content) 
         ? content.map(chunk => {
-            // Check chunk type before accessing properties
             if ('text' in chunk) {
               return chunk.text;
-            } else if (chunk.type === 'image_url') {
-              return '[Image]'; // Handle image chunks appropriately
-            }
-            return ''; // Fallback for other chunk types
+            } 
+            return '';
           }).join('')
         : content || 'No response received';
 
