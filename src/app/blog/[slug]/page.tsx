@@ -77,70 +77,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             {post.content}
           </MdxContent>
         </article>
+        <div className="w-full h-2 bg-white mt-12"></div><div className="w-full h-2 bg-white mt-12"></div>
       </div>
-
-      {/* Bottom Action Bar */}
-      <div className="bg-slate-800 border-t border-slate-700">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-center md:text-left">
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Need Legal Assistance?
-                </h3>
-                <p className="text-gray-300">
-                  Contact us for a consultation regarding your case.
-                </p>
-              </div>
-              <div className="flex space-x-4">
-                <Link 
-                  href="/contact"
-                  className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors"
-                >
-                  Contact Us
-                </Link>
-                <Link 
-                  href="/blog"
-                  className="bg-slate-700 text-white px-6 py-3 rounded-lg hover:bg-slate-600 transition-colors"
-                >
-                  More Articles
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-700">
-        <div className="container mx-auto px-4 py-6">
-          <div className="max-w-3xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © 2024 Law Offices of Chris Noriega. All rights reserved.
-            </p>
-            <div className="flex space-x-4 text-sm">
-              <Link 
-                href="/"
-                className="text-indigo-400 hover:text-indigo-300 transition-colors"
-              >
-                Home
-              </Link>
-              <Link 
-                href="/blog"
-                className="text-indigo-400 hover:text-indigo-300 transition-colors"
-              >
-                Blog
-              </Link>
-              <Link 
-                href="/about"
-                className="text-indigo-400 hover:text-indigo-300 transition-colors"
-              >
-                About
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
