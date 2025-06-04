@@ -56,7 +56,7 @@ const SmartIntakeForm = () => {
     // Handle both string and ContentChunk[] responses
     if (Array.isArray(content)) {
         return content
-          .filter((chunk): chunk is TextChunk => chunk.type === 'text')
+          .filter((chunk): chunk is { type: 'text'; text: string } => chunk.type === 'text')
           .map(chunk => chunk.text)
           .join('');
     }
