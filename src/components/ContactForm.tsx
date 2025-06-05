@@ -13,11 +13,11 @@ interface ContactFormProps {
 interface ContactFormData {
   name: string;
   email: string;
-  phone?: string;
+  phone: string;
   message: string;
-  practiceArea?: string;
-  caseType?: string;
-  urgency?: 'normal' | 'soon' | 'urgent';
+  caseType: string;
+  practiceArea: string;
+  urgency: 'normal' | 'soon' | 'urgent';
 }
 
 export default function ContactForm({ practiceArea }: ContactFormProps) {
@@ -26,8 +26,9 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
     email: '',
     phone: '',
     message: '',
-    // Use the practiceArea prop if provided, otherwise empty string
-    caseType: practiceArea || ''
+    caseType: '',
+    practiceArea: '',
+    urgency: 'normal'
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -43,11 +44,13 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStatus('success');
       setFormData({
-        name: '', 
-        email: '', 
-        phone: '', 
+        name: '',
+        email: '',
+        phone: '',
         message: '',
-        caseType: ''
+        caseType: '',
+        practiceArea: '',
+        urgency: 'normal'
       });
 
       // Track the conversion
@@ -202,9 +205,12 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
                 </label>
                 <select
                   id="urgency"
-                  className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base sm:text-lg p-3 sm:p-4"
                   value={formData.urgency}
-                  onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
+                  onChange={(e) => setFormData({ 
+                    ...formData, 
+                    urgency: e.target.value as 'normal' | 'soon' | 'urgent' 
+                  })}
+                  className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
                 >
                   <option value="normal">Within a few days</option>
                   <option value="soon">Within 24 hours</option>

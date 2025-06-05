@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight, Shield, Scale, Users, Gavel, AlertTriangle, Car, FileText, Briefcase } from 'lucide-react';
 import Link from 'next/link';
-import { Phone, ArrowRight, Shield, Gavel, Scale, FileText, Briefcase, Users } from 'lucide-react';
 
 function PracticeAreasHighlight() {
   const practices = [

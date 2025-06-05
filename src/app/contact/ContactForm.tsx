@@ -9,7 +9,9 @@ export default function ContactForm() {
     email: '',
     phone: '',
     message: '',
-    caseType: ''
+    caseType: '',
+    practiceArea: '',
+    urgency: 'normal' as 'normal' | 'soon' | 'urgent'
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -19,24 +21,56 @@ export default function ContactForm() {
     setStatus('loading');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '', caseType: '' });
-
-      // Track the conversion
-      trackLeadConversion({
-        type: 'form',
-        source: 'contact_form',
-        metadata: {
-          formType: 'contact',
-          caseType: formData.caseType,
-        }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ 
+          name: '', 
+          email: '', 
+          phone: '', 
+          message: '', 
+          caseType: '',
+          practiceArea: '',
+          urgency: 'normal'
+        });
+
+        // Track the conversion
+        trackLeadConversion({
+          type: 'form',
+          source: 'contact_form',
+          metadata: {
+            formType: 'contact',
+            caseType: formData.caseType,
+          }
+        });
+      } else {
+        setStatus('error');
+      }
     } catch {
       setStatus('error');
     }
   };
+
+  const practiceAreas = [
+    'Criminal Defense',
+    'DUI/DWI',
+    'Traffic Violations',
+    'Domestic Violence',
+    'Drug Crimes',
+    'Theft Crimes',
+    'Assault & Battery',
+    'White Collar Crimes',
+    'Juvenile Defense',
+    'Appeals',
+    'Other'
+  ];
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -49,7 +83,7 @@ export default function ContactForm() {
           id="name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
           required
         />
       </div>
@@ -63,7 +97,7 @@ export default function ContactForm() {
           id="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
           required
         />
       </div>
@@ -77,7 +111,7 @@ export default function ContactForm() {
           id="phone"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
           required
         />
       </div>
@@ -91,7 +125,7 @@ export default function ContactForm() {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
           required
         />
       </div>
@@ -104,7 +138,7 @@ export default function ContactForm() {
           id="caseType"
           value={formData.caseType}
           onChange={(e) => setFormData({ ...formData, caseType: e.target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
           required
         >
           <option value="">Select a case type</option>
@@ -112,6 +146,41 @@ export default function ContactForm() {
           <option value="civil">Civil Law</option>
           <option value="family">Family Law</option>
           <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="practiceArea" className="block text-sm font-medium text-white">
+          Practice Area
+        </label>
+        <select
+          id="practiceArea"
+          value={formData.practiceArea}
+          onChange={(e) => setFormData({ ...formData, practiceArea: e.target.value })}
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
+          required
+        >
+          <option value="">Select a practice area</option>
+          {practiceAreas.map((area) => (
+            <option key={area} value={area}>{area}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="urgency" className="block text-sm font-medium text-white">
+          Urgency
+        </label>
+        <select
+          id="urgency"
+          value={formData.urgency}
+          onChange={(e) => setFormData({ ...formData, urgency: e.target.value as 'normal' | 'soon' | 'urgent' })}
+          className="mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3"
+          required
+        >
+          <option value="normal">Normal</option>
+          <option value="soon">Soon</option>
+          <option value="urgent">Urgent</option>
         </select>
       </div>
 
