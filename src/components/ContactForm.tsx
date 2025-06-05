@@ -27,7 +27,7 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
     phone: '',
     message: '',
     caseType: '',
-    practiceArea: '',
+    practiceArea: practiceArea || '', // Use the prop if provided
     urgency: 'normal'
   });
 
@@ -40,29 +40,40 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
     setErrorMessage('');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        caseType: '',
-        practiceArea: '',
-        urgency: 'normal'
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
-      // Track the conversion
-      trackLeadConversion({
-        type: 'form',
-        source: 'contact_form',
-        metadata: {
-          formType: 'contact',
-          caseType: formData.caseType,
-        }
-      });
-    } catch (error) {
+      if (response.ok) {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          caseType: '',
+          practiceArea: practiceArea || '',
+          urgency: 'normal'
+        });
+
+        // Track the conversion
+        trackLeadConversion({
+          type: 'form',
+          source: 'contact_form',
+          metadata: {
+            formType: 'contact',
+            caseType: formData.caseType,
+          }
+        });
+      } else {
+        setStatus('error');
+        setErrorMessage('Failed to send message. Please try again.');
+      }
+    } catch {
       setStatus('error');
       setErrorMessage('Network error. Please try again.');
     }
@@ -94,7 +105,7 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
           <CheckCircle className="text-green-600 mr-3" size={20} />
           <div>
             <p className="text-green-800 font-medium">Message sent successfully!</p>
-            <p className="text-green-700 text-sm">We'll get back to you within 24 hours.</p>
+            <p className="text-green-700 text-sm">We&apos;ll get back to you within 24 hours.</p>
           </div>
         </motion.div>
       );
@@ -125,7 +136,7 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 to-blue-600 px-6 sm:px-8 py-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Get Your Free Consultation</h2>
-          <p className="text-indigo-100">Fill out the form below and we'll contact you within 24 hours</p>
+          <p className="text-indigo-100">Fill out the form below and we&apos;ll contact you within 24 hours</p>
         </div>
 
         {/* Form */}
