@@ -1,4 +1,4 @@
-import ContactForm from './ContactForm';
+import ContactForm from '@/components/ContactForm';
 import Image from 'next/image';
 import Link from 'next/link';
 

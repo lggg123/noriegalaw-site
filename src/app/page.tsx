@@ -16,47 +16,99 @@ function NavigationBar() {
 
   return (
     <nav className="bg-slate-800 p-4 fixed w-full top-0 z-50 shadow-md">
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="text-white font-bold text-xl md:text-2xl">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex justify-between items-center min-h-[56px]">
+          {/* Logo/Title - Always visible with better spacing */}
+          <Link 
+            href="/" 
+            className="text-white font-bold text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl flex-shrink-0 py-2"
+          >
             Noriega Law
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6">
-            <Link href="/about" className="text-white hover:text-slate-300 transition duration-300">
+          {/* Desktop Navigation - show on larger screens with better breakpoints */}
+          <div className="hidden xl:flex space-x-6 2xl:space-x-8 items-center">
+            <Link 
+              href="/about" 
+              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+            >
               About
             </Link>
-            <Link href="#services" className="text-white hover:text-slate-300 transition duration-300">
+            <Link 
+              href="#services" 
+              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+            >
               Services
             </Link>
             <Link 
               href="/intake" 
-              className="text-white rounded-lg"
+              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
             >
               Free Case Evaluation
             </Link>
-            <Link href="/practice-areas" className="text-white hover:text-slate-300 transition duration-300">
+            <Link 
+              href="/practice-areas" 
+              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+            >
               Practice Areas
             </Link>
-            <Link href="/contact" className="text-white hover:text-slate-300 transition duration-300">
+            <Link 
+              href="/contact" 
+              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+            >
               Contact
             </Link>
             <a 
               href="tel:626-336-8080" 
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition duration-300 flex items-center"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 lg:px-6 py-3 rounded-lg transition duration-300 flex items-center text-base lg:text-lg whitespace-nowrap flex-shrink-0"
             >
-              <Phone size={16} className="mr-2" />
-              <span>626-336-8080</span>
+              <Phone size={18} className="mr-2" />
+              <span className="hidden lg:inline">626-336-8080</span>
+              <span className="lg:hidden">Call</span>
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Tablet Navigation - show on medium to large screens */}
+          <div className="hidden lg:flex xl:hidden space-x-4 items-center">
+            <Link 
+              href="/about" 
+              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+            >
+              About
+            </Link>
+            <Link 
+              href="#services" 
+              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+            >
+              Services
+            </Link>
+            <Link 
+              href="/practice-areas" 
+              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+            >
+              Practice
+            </Link>
+            <Link 
+              href="/contact" 
+              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+            >
+              Contact
+            </Link>
+            <a 
+              href="tel:626-336-8080" 
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition duration-300 flex items-center text-sm whitespace-nowrap"
+            >
+              <Phone size={16} className="mr-1" />
+              <span>Call</span>
+            </a>
+          </div>
+
+          {/* Mobile Menu Button - show on smaller screens */}
           <button 
-            className="md:hidden text-white"
+            className="lg:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
@@ -67,33 +119,33 @@ function NavigationBar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden mt-4 pb-2"
+            className="lg:hidden mt-4 pb-2"
           >
             <div className="flex flex-col space-y-4">
               <Link 
                 href="/about" 
-                className="text-white hover:text-slate-300 transition duration-300 py-2"
+                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link 
                 href="#services" 
-                className="text-white hover:text-slate-300 transition duration-300 py-2"
+                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </Link>
               <Link 
                 href="/practice-areas" 
-                className="text-white hover:text-slate-300 transition duration-300 py-2"
+                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Practice Areas
               </Link>
               <Link 
                 href="#contact" 
-                className="text-white hover:text-slate-300 transition duration-300 py-2"
+                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact

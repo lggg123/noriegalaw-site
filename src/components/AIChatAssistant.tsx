@@ -119,23 +119,20 @@ const ClientOnlyMistral = () => {
     <div className="fixed bottom-6 right-6 z-50">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700"
+        className="bg-indigo-600 text-white p-4 sm:p-5 rounded-full shadow-lg hover:bg-indigo-700 text-sm sm:text-base"
       >
         {isOpen ? 'Close Chat' : 'Get Legal Help'}
       </button>
       
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-96 bg-white rounded-lg shadow-xl">
-          <div className="p-4 border-b flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-600">
-            <h3 className="text-lg font-bold text-white flex items-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-              </svg>
+        <div className="absolute bottom-20 right-0 w-80 sm:w-96 lg:w-[420px] bg-white rounded-lg shadow-xl">
+          <div className="p-4 sm:p-6 border-b flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-600">
+            <h3 className="text-base sm:text-lg font-bold text-white flex items-center">
               Legal Assistant
             </h3>
             <button 
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200 transition-colors"
+              className="text-white hover:text-gray-200 transition-colors p-1"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -143,7 +140,7 @@ const ClientOnlyMistral = () => {
             </button>
           </div>
           
-          <div className="h-96 overflow-y-auto p-4 space-y-4">
+          <div className="h-80 sm:h-96 overflow-y-auto p-4 sm:p-6 space-y-4">
             {error && (
               <div className="text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg border border-red-200">
                 <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -196,7 +193,7 @@ const ClientOnlyMistral = () => {
             )}
           </div>
 
-          <div className="p-4 border-t bg-gray-50">
+          <div className="p-4 sm:p-6 border-t bg-gray-50">
             <div className="flex space-x-2">
               <input
                 type="text"
@@ -204,23 +201,14 @@ const ClientOnlyMistral = () => {
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="Type your legal question..."
-                className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-gray-900 placeholder-gray-500 bg-white"
+                className="flex-1 p-3 sm:p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm sm:text-base text-gray-900 placeholder-gray-500 bg-white"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={isLoading}
-                className={`px-4 py-3 text-white rounded-lg transition-colors text-sm font-medium ${
-                  isLoading 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-sm'
-                }`}
+                className="px-4 sm:px-6 py-3 sm:py-4 text-white rounded-lg transition-colors text-sm sm:text-base font-medium"
               >
-                {isLoading ? (
-                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                  </svg>
-                ) : 'Send'}
+                {isLoading ? 'Sending...' : 'Send'}
               </button>
             </div>
           </div>
