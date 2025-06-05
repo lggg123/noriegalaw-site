@@ -2,52 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Shield, Scale, Users, Gavel, AlertTriangle, Car, FileText, Briefcase } from 'lucide-react';
+import { ArrowRight, Shield, Scale, Users, Gavel } from 'lucide-react';
 import Link from 'next/link';
 
 function PracticeAreasHighlight() {
-  const practices = [
-    {
-      title: "Criminal Defense",
-      description: "Aggressive defense for all criminal charges from misdemeanors to serious felonies.",
-      icon: Shield,
-      link: "/practice-areas/criminal-defense"
-    },
-    {
-      title: "DUI Defense",
-      description: "Expert representation for DUI cases with strategies to minimize or eliminate penalties.",
-      icon: Gavel,
-      link: "/practice-areas/dui-defense"
-    },
-    {
-      title: "Drug Offenses",
-      description: "Comprehensive defense strategies for drug possession, sale, and manufacturing charges.",
-      icon: FileText,
-      link: "/practice-areas/drug-offenses"
-    },
-    {
-      title: "Violent Crimes",
-      description: "Experienced defense for assault, battery, and other violent crime allegations.",
-      icon: Scale,
-      link: "/practice-areas/violent-crimes"
-    },
-    {
-      title: "White Collar Crimes",
-      description: "Strategic defense for fraud, embezzlement, and other financial crime accusations.",
-      icon: Briefcase,
-      link: "/practice-areas/white-collar-crimes"
-    },
-    {
-      title: "Juvenile Offenses",
-      description: "Compassionate representation for minors facing criminal charges in the juvenile system.",
-      icon: Users,
-      link: "/practice-areas/juvenile-offenses"
-    }
-  ];
-
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
         staggerChildren: 0.1
       }
@@ -55,19 +17,52 @@ function PracticeAreasHighlight() {
   };
 
   const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20
-    },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.5 }
     }
   };
+
+  const practices = [
+    {
+      icon: Scale,
+      title: "Criminal Defense",
+      description: "Comprehensive defense for all criminal charges, from misdemeanors to serious felonies.",
+      link: "/practice-areas/criminal-defense"
+    },
+    {
+      icon: Shield,
+      title: "DUI/DWI Defense",
+      description: "Expert representation for driving under the influence charges with proven results.",
+      link: "/practice-areas/dui-defense"
+    },
+    {
+      icon: Users,
+      title: "Domestic Violence",
+      description: "Skilled defense against domestic violence allegations with compassionate support.",
+      link: "/practice-areas/domestic-violence"
+    },
+    {
+      icon: Gavel,
+      title: "Drug Crimes",
+      description: "Strategic defense for drug possession, distribution, and trafficking charges.",
+      link: "/practice-areas/drug-crimes"
+    },
+    {
+      icon: Shield,
+      title: "Traffic Violations",
+      description: "Protection against traffic tickets, license suspension, and driving violations.",
+      link: "/practice-areas/traffic-violations"
+    },
+    {
+      icon: Scale,
+      title: "White Collar Crimes",
+      description: "Defense against fraud, embezzlement, and other white collar criminal charges.",
+      link: "/practice-areas/white-collar"
+    }
+  ];
 
   return (
     <section id="services" className="py-16 sm:py-20 lg:py-24 bg-slate-900">
