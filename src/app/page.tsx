@@ -111,7 +111,7 @@ function NavigationBar() {
           <div className="flex items-center gap-4">
             {/* Call Button - Always visible */}
             <a 
-              href="tel:+6263368080" 
+              href="+6263368080" 
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
             >
               <Phone className="w-4 h-4" />
