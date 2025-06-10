@@ -11,159 +11,247 @@ import GoogleReviews from '../components/GoogleReviews';
 import AIChatAssistant from '@/components/AIChatAssistant';
 import BlogSection from '@/components/BlogSection';
 
+import React, { useState } from ‘react’;
+import { Phone, Menu, X } from ‘lucide-react’;
+
+// Logo Component
+const NoriegaLogo = ({ className = “”, showText = true, size = “md” }) => {
+const sizes = {
+sm: { icon: “w-6 h-6”, text: “text-sm” },
+md: { icon: “w-8 h-8”, text: “text-lg” },
+lg: { icon: “w-10 h-10”, text: “text-xl” },
+xl: { icon: “w-12 h-12”, text: “text-2xl” }
+};
+
+return (
+<div className={`flex items-center gap-3 ${className}`}>
+<div className={`${sizes[size].icon} flex-shrink-0`}>
+<svg viewBox="0 0 100 100" className="w-full h-full">
+{/* Scales of Justice */}
+<path 
+d="M50 15 L50 85 M35 25 L65 25" 
+stroke="white" 
+strokeWidth="3" 
+fill="none"
+/>
+<circle 
+cx="35" 
+cy="25" 
+r="15" 
+stroke="white" 
+strokeWidth="2" 
+fill="none" 
+opacity="0.8"
+/>
+<circle 
+cx="65" 
+cy="25" 
+r="15" 
+stroke="white" 
+strokeWidth="2" 
+fill="none" 
+opacity="0.8"
+/>
+<path 
+d="M45 80 L55 80 L52.5 85 Z" 
+fill="white"
+/>
+{/* Shield element */}
+<path 
+d="M50 5 L42 10 L42 20 L50 25 L58 20 L58 10 Z" 
+fill="white" 
+opacity="0.9"
+/>
+</svg>
+</div>
+{showText && (
+<div className="flex flex-col">
+<span className={`text-white font-bold leading-tight ${sizes[size].text}`}>
+NORIEGA LAW
+</span>
+<span className="text-slate-300 text-xs uppercase tracking-wider hidden sm:block">
+Criminal Defense
+</span>
+</div>
+)}
+</div>
+);
+};
+
+// Link component placeholder (replace with your actual Link component)
+const Link = ({ href, children, className, onClick }) => (
+<a href={href} className={className} onClick={onClick}>
+{children}
+</a>
+);
+
 function NavigationBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <nav className="bg-slate-800 p-4 fixed w-full top-0 z-50 shadow-md">
-      <div className="container mx-auto max-w-7xl">
-        <div className="flex justify-between items-center min-h-[56px]">
-          {/* Logo/Title - Always visible with better spacing */}
-          <Link 
-            href="/" 
-            className="text-white font-bold text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl flex-shrink-0 py-2"
-          >
-            Noriega Law
-          </Link>
+return (
+<nav className="bg-slate-800 p-4 fixed w-full top-0 z-50 shadow-md">
+<div className="container mx-auto max-w-7xl">
+<div className="flex justify-between items-center min-h-[56px]">
+{/* Logo - Always visible with responsive sizing */}
+<Link 
+href="/" 
+className="flex-shrink-0 py-2 hover:opacity-80 transition-opacity duration-300"
+>
+<NoriegaLogo
+size=“sm”
+className=“sm:hidden” // Mobile: icon + text, small
+showText={true}
+/>
+<NoriegaLogo
+size=“md”
+className=“hidden sm:flex lg:hidden” // Tablet: medium size
+showText={true}
+/>
+<NoriegaLogo
+size=“lg”
+className=“hidden lg:flex xl:hidden” // Large: larger size
+showText={true}
+/>
+<NoriegaLogo
+size=“xl”
+className=“hidden xl:flex” // Extra large: biggest size
+showText={true}
+/>
+</Link>
 
-          {/* Desktop Navigation - show on larger screens with better breakpoints */}
-          <div className="hidden xl:flex space-x-6 2xl:space-x-8 items-center">
-            <Link 
-              href="/about" 
-              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
-            >
-              About
-            </Link>
-            <Link 
-              href="#services" 
-              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
-            >
-              Services
-            </Link>
-            <Link 
-              href="/intake" 
-              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
-            >
-              Free Case Evaluation
-            </Link>
-            <Link 
-              href="/practice-areas" 
-              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
-            >
-              Practice Areas
-            </Link>
-            <Link 
-              href="/contact" 
-              className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
-            >
-              Contact
-            </Link>
-            <a 
-              href="tel:626-336-8080" 
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 lg:px-6 py-3 rounded-lg transition duration-300 flex items-center text-base lg:text-lg whitespace-nowrap flex-shrink-0"
-            >
-              <Phone size={18} className="mr-2" />
-              <span className="hidden lg:inline">626-336-8080</span>
-              <span className="lg:hidden">Call</span>
-            </a>
-          </div>
-
-          {/* Tablet Navigation - show on medium to large screens */}
-          <div className="hidden lg:flex xl:hidden space-x-4 items-center">
-            <Link 
-              href="/about" 
-              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
-            >
-              About
-            </Link>
-            <Link 
-              href="#services" 
-              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
-            >
-              Services
-            </Link>
-            <Link 
-              href="/practice-areas" 
-              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
-            >
-              Practice
-            </Link>
-            <Link 
-              href="/contact" 
-              className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
-            >
-              Contact
-            </Link>
-            <a 
-              href="tel:626-336-8080" 
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition duration-300 flex items-center text-sm whitespace-nowrap"
-            >
-              <Phone size={16} className="mr-1" />
-              <span>Call</span>
-            </a>
-          </div>
-
-          {/* Mobile Menu Button - show on smaller screens */}
-          <button 
-            className="lg:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <motion.div 
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden mt-4 pb-2"
-          >
-            <div className="flex flex-col space-y-4">
-              <Link 
-                href="/about" 
-                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link 
-                href="#services" 
-                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Services
-              </Link>
-              <Link 
-                href="/practice-areas" 
-                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Practice Areas
-              </Link>
-              <Link 
-                href="#contact" 
-                className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Link>
-              <a 
-                href="tel:626-336-8080" 
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded-lg transition duration-300 flex items-center justify-center"
-              >
-                <Phone size={16} className="mr-2" />
-                <span>626-336-8080</span>
-              </a>
-            </div>
-          </motion.div>
-        )}
+```
+      {/* Desktop Navigation - show on larger screens with better breakpoints */}
+      <div className="hidden xl:flex space-x-6 2xl:space-x-8 items-center">
+        <Link 
+          href="/about" 
+          className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+        >
+          About
+        </Link>
+        <Link 
+          href="#services" 
+          className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+        >
+          Services
+        </Link>
+        <Link 
+          href="/intake" 
+          className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+        >
+          Free Case Evaluation
+        </Link>
+        <Link 
+          href="/practice-areas" 
+          className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+        >
+          Practice Areas
+        </Link>
+        <Link 
+          href="/contact" 
+          className="text-white hover:text-slate-300 transition duration-300 text-base lg:text-lg whitespace-nowrap"
+        >
+          Contact
+        </Link>
+        <a 
+          href="tel:626-336-8080" 
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 lg:px-6 py-3 rounded-lg transition duration-300 flex items-center text-base lg:text-lg whitespace-nowrap flex-shrink-0"
+        >
+          <Phone size={18} className="mr-2" />
+          <span className="hidden lg:inline">626-336-8080</span>
+          <span className="lg:hidden">Call</span>
+        </a>
       </div>
-    </nav>
-  );
-}
+
+      {/* Tablet Navigation - show on medium to large screens */}
+      <div className="hidden lg:flex xl:hidden space-x-4 items-center">
+        <Link 
+          href="/about" 
+          className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+        >
+          About
+        </Link>
+        <Link 
+          href="#services" 
+          className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+        >
+          Services
+        </Link>
+        <Link 
+          href="/practice-areas" 
+          className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+        >
+          Practice
+        </Link>
+        <Link 
+          href="/contact" 
+          className="text-white hover:text-slate-300 transition duration-300 text-sm whitespace-nowrap"
+        >
+          Contact
+        </Link>
+        <a 
+          href="tel:626-336-8080" 
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition duration-300 flex items-center text-sm whitespace-nowrap"
+        >
+          <Phone size={16} className="mr-1" />
+          <span>Call</span>
+        </a>
+      </div>
+
+      {/* Mobile Menu Button - show on smaller screens */}
+      <button 
+        className="lg:hidden text-white"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
+    </div>
+
+    {/* Mobile Navigation */}
+    {isMenuOpen && (
+      <div 
+        className="lg:hidden mt-4 pb-2 animate-in slide-in-from-top-2 duration-300"
+      >
+        <div className="flex flex-col space-y-4">
+          <Link 
+            href="/about" 
+            className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link 
+            href="#services" 
+            className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Services
+          </Link>
+          <Link 
+            href="/practice-areas" 
+            className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Practice Areas
+          </Link>
+          <Link 
+            href="#contact" 
+            className="text-white hover:text-slate-300 transition duration-300 py-3 text-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contact
+          </Link>
+          <a 
+            href="tel:626-336-8080" 
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded-lg transition duration-300 flex items-center justify-center"
+          >
+            <Phone size={16} className="mr-2" />
+            <span>626-336-8080</span>
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+</nav>
 
 function AboutSection() {
   const [ref, inView] = useInView({
