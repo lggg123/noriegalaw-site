@@ -114,8 +114,6 @@ className=“hidden xl:flex” // Extra large: biggest size
 showText={true}
 />
 </Link>
-
-```
       {/* Desktop Navigation - show on larger screens with better breakpoints */}
       <div className="hidden xl:flex space-x-6 2xl:space-x-8 items-center">
         <Link 
