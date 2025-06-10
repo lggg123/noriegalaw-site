@@ -20,60 +20,12 @@ xl: { icon: "w-12 h-12", text: "text-2xl" }
 };
 
 return (
-<div className={`flex items-center gap-3 ${className}`}>
-<div className={`${sizes[size].icon} flex-shrink-0`}>
-<svg viewBox="0 0 100 100" className="w-full h-full">
-{/* Scales of Justice */}
-<path 
-d="M50 15 L50 85 M35 25 L65 25" 
-stroke="white" 
-strokeWidth="3" 
-fill="none"
-/>
-<circle 
-cx="35" 
-cy="25" 
-r="15" 
-stroke="white" 
-strokeWidth="2" 
-fill="none" 
-opacity="0.8"
-/>
-<circle 
-cx="65" 
-cy="25" 
-r="15" 
-stroke="white" 
-strokeWidth="2" 
-fill="none" 
-opacity="0.8"
-/>
-<path 
-d="M45 80 L55 80 L52.5 85 Z" 
-fill="white"
-/>
-{/* Shield element */}
-<path 
-d="M50 5 L42 10 L42 20 L50 25 L58 20 L58 10 Z" 
-fill="white" 
-opacity="0.9"
-/>
-</svg>
-</div>
-{showText && (
-<div className="flex flex-col">
-<span className={`text-white font-bold leading-tight ${sizes[size].text}`}>
-NORIEGA LAW
-</span>
-<span className="text-slate-300 text-xs uppercase tracking-wider hidden sm:block">
-Criminal Defense
-</span>
-</div>
-)}
-</div>
+  <>
+    <nav className="bg-slate-800 p-4 fixed w-full top-0 z-50 shadow-md">
+    {/* rest of your JSX */}
+    </nav>
+  </>
 );
-};
-
 // Link component placeholder (replace with your actual Link component)
 const Link = ({ href, children, className, onClick }) => (
 <a href={href} className={className} onClick={onClick}>
