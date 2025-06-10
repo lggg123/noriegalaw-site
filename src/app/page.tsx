@@ -11,10 +11,6 @@ import GoogleReviews from '../components/GoogleReviews';
 import AIChatAssistant from '@/components/AIChatAssistant';
 import BlogSection from '@/components/BlogSection';
 
-import React, { useState } from ‘react’;
-import { Phone, Menu, X } from ‘lucide-react’;
-
-// Logo Component
 const NoriegaLogo = ({ className = “”, showText = true, size = “md” }) => {
 const sizes = {
 sm: { icon: “w-6 h-6”, text: “text-sm” },
