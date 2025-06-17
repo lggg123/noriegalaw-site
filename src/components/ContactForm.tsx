@@ -297,8 +297,8 @@ export default function ContactForm({ practiceArea }: ContactFormProps) {
                 <Mail className="text-indigo-600 mr-3" size={24} />
                 <div>
                   <p className="font-semibold text-gray-900">Email Us</p>
-                  <a href="mailto:chris@noriegalaw.com" className="text-indigo-600 hover:text-indigo-800">
-                    chris@noriegalaw.com
+                  <a href="mailto:noriegalaw@gmail.com" className="text-indigo-600 hover:text-indigo-800">
+                    noriegalaw@gmail.com
                   </a>
                 </div>
               </div>
