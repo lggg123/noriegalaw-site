@@ -116,7 +116,7 @@ const ClientOnlyMistral = () => {
   };
 
   return (
-    <div className="bg-yellow-500 text-black p-4 sm:p-5 rounded-full shadow-lg hover:bg-yellow-600 text-sm sm:text-base"
+    <div className="bg-yellow-500 text-black p-4 sm:p-5 rounded-full shadow-lg hover:bg-yellow-600 text-sm sm:text-base">
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="bg-indigo-600 text-white p-4 sm:p-5 rounded-full shadow-lg hover:bg-indigo-700 text-sm sm:text-base"
